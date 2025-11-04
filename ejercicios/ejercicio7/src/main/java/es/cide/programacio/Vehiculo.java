@@ -9,11 +9,11 @@ public class Vehiculo {
     // d diesel, g gasolina, e electronico
     char combustible;
     //autonomia total
-    int autonomia;
+    double autonomia;
     //consumo de litros/km
-    int consumo;
-    int litrosTotal;
-    int litrosRestantes;
+    double consumo;
+    dpuble litrosTotal;
+    double litrosRestantes;
 
     public void Vehiculo() {
         this.color = " ";
@@ -26,17 +26,17 @@ public class Vehiculo {
         this.litrosRestantes = 0;
     }
 
-    public void Vehiculo(String color, int plazas, int peso, char combustible, int autonomia, int plazasOcupadas, int consumo) {
-        this.color = color;
-        this.plazas = plazas;
-        this.peso = peso;
-        this.combustible = combustible;
-        this.plazasOcupadas = plazasOcupadas;
-        this.consumo = consumo;
-        this.litrosTotal =litrosTotal;
-        this.litrosRestantes = litrosRestantes;
+    public void Vehiculo(String c, int p, int pO, char pe, char co, double autonomia, double con, double l, double lr) {
+        this.color = c;
+        this.plazas = p;
+        this.plazasOcupadas = pO;
+        this.peso = pe;
+        this.combustible = co;
+        this.autonomia = a;
+        this.consumo = con;
+        this.litrosTotal = l;
+        this.litrosRestantes = lr;
     }
-
     //                      **** GET Y SET ****
     public int getPeso() {return this.peso;}
 
