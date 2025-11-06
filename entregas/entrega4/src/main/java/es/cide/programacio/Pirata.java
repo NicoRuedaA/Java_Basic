@@ -11,12 +11,21 @@ public class Pirata{
     private int vida, insultActual;
     private Insult[] arrInsults;
 
+    private int id;
+    private int contador=0;
+
     // Constructor
     public Pirata() {
         this.vida = random.nextInt(VIDA_MIN, VIDA_MAX) + 1;
-        this.nom = " ";
-        this.arrInsults = new Insult[NUM_INSULTS];
-        this.insultActual = 0;
+        id=contador++;
+    this.nom = "Pirata_" + id;
+    this.arrInsults = new Insult[NUM_INSULTS];
+    this.insultActual = 0;
+    System.out.println("Creando pirata con vida: " + vida);
+    for (int i = 0; i < arrInsults.length; i++) {
+        arrInsults[i] = new Insult();
+        System.out.println(" → Insulto " + i + " creado: " + arrInsults[i]);
+    }
     }
 
     public Insult insultar(){
@@ -45,6 +54,15 @@ public class Pirata{
 
     public int getVida(){
         return this.vida;
+    }
+
+    public Insult getInsultActual(){
+        return this.arrInsults[insultActual];
+    }
+
+    public Insult getInsult(int x){
+        return this.arrInsults[x];
+
     }
 
 }

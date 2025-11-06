@@ -18,25 +18,28 @@ public class Heroi{
         this.vida = v;
     }
 
-    public String defensar(){
-        Scanner sc = new Scanner(System.in);
-        String respuesta1, respuesta2, respuesta3;
+    /*public String defensar(){
+        String respuesta1, respuesta2, respuesta3 = " ";
         int res = 0;
 
-        //opcion 1
-        //opcion 2
-        //opcion 3
-        while (res<1 || res>3){
+        Pirata pirataActual = new Pirata();
+        pirataActual.getPirataActual();
+        pirataActual.getInsultActual();
+        
+        Insult insultRandom = new Insult(); Insult insultRandom2 = new Insult();
+
+
+        /*while (res<1 || res>3){
             try {
             System.out.println("Introdueix la teva resposta 1-3");
             res = sc.nextInt();
         } 
         catch (InputMismatchException e) {
             System.out.println("Error");
-            sc.nextLine(); 
+            //sc.nextLine(); 
         }
-        }
-        sc.close();
+    }
+
 
         return respuesta3;
     }
@@ -45,5 +48,5 @@ public class Heroi{
         this.vida --;
         if(vida>0) return true;
         return false; 
-    }
+    }*/
 }

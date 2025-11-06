@@ -3,7 +3,7 @@ package es.cide.programacio;
 import java.util.Random;
 
 public class Insult {
-    String[] arrayInsultos = {
+    private String[] arrayInsultos = {
         "¡Luchas como un granjero! ¡ Ordeñaré hasta la última gota de sangre de tu cuerpo !",
         "¡No hay palabras para describir lo asqueroso que eres! Ya no hay técnicas que te puedan salvar.  ",
         "¡He hablado con simios más educados que tu! Ahora entiendo lo que significan basura y estupidez.",
@@ -21,7 +21,7 @@ public class Insult {
             };
 
     // creamos una array con cada respuesta
-    String[] arrayRespuestas = {
+    private String[] arrayRespuestas = {
             "Qué apropiado, tú peleas como una vaca.",
             "Sí que las hay, sólo que nunca las has aprendido.",
             "Me alegra que asistieras a tu reunión familiar diaria.",
@@ -38,15 +38,36 @@ public class Insult {
             "Estaría acabado si la usases alguna vez."
     };
 
-    Random random = new Random();
-    int insult;
+    private Random random = new Random();
+    private int insult;
 
     public Insult(){
         this.insult = random.nextInt(arrayInsultos.length);
     }
 
+    //construcotr para un insulto concreto (posicion en el array)
+    public Insult(int x){
+        //comprobar
+        this.insult = x;
+    }
+
+    /*//creamos y devolvemos un insult aleatorio
+    public Insult getInsultAleatori(){
+        Insult nouInsult = new Insult(random.nextInt(arrayInsultos.length));
+        return nouInsult;
+    }*/
+
     public boolean respuestaCorrecta(String s){
         return s.equals(arrayRespuestas[this.insult]);
     }
+    
+
+    public String getResposta(int x){
+        return arrayRespuestas[x];
+    }
+
+    public String getInsultText() {
+    return arrayInsultos[this.insult];
+}
 
 }
