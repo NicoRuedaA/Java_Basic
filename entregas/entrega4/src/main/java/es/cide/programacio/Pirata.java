@@ -21,10 +21,10 @@ public class Pirata{
     this.nom = "Pirata_" + id;
     this.arrInsults = new Insult[NUM_INSULTS];
     this.insultActual = 0;
-    System.out.println("Creando pirata con vida: " + vida);
+    //System.out.println("Creando pirata con vida: " + vida);
     for (int i = 0; i < arrInsults.length; i++) {
         arrInsults[i] = new Insult();
-        System.out.println(" → Insulto " + i + " creado: " + arrInsults[i]);
+        //System.out.println(" → Insulto " + i + " creado: " + arrInsults[i].getInsultText());
     }
     }
 
