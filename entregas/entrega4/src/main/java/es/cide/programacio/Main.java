@@ -9,24 +9,23 @@ package es.cide.programacio;
 import java.util.Random;
 import java.util.Scanner;
 
-
 public class Main {
     public static final String[] arrayInsultos = {
-        "¡Luchas como un granjero! ¡ Ordeñaré hasta la última gota de sangre de tu cuerpo !",
-        "¡No hay palabras para describir lo asqueroso que eres! Ya no hay técnicas que te puedan salvar.  ",
-        "¡He hablado con simios más educados que tu! Ahora entiendo lo que significan basura y estupidez.",
-        "¡No pienso aguantar tu insolencia aquí sentado! ¡ Eres como un dolor en la parte baja de la espalda !",
-        "¡Mi pañuelo limpiará tu sangre!",
-        "¡Ha llegado tu HORA, palurdo de ocho patas! Hoy te tengo preparada una larga y dura lección.",
-        "¿Has dejado ya de usar pañales? Espero que tengas un barco para una rápida huida.",
-        "¡Una vez tuve un perro más listo que tu! Sólo he conocido a uno tan cobarde como tú.",
-        "¡Nadie me ha sacado sangre jamás, y nadie lo hará! Nunca me verán luchar tan mal como tú lo haces.",
-        "¡Me das ganas de vomitar! Si tu hermano es como tú, mejor casarse con un cerdo.",
-        "¡Tienes los modales de un mendigo! Cada palabra que sale de tu boca es una estupidez.",
-        "¡He oído que eres un soplón despreciable! Mi espada es famosa en todo el Caribe ¡ Mi nombre es temido en cada sucio rincón de esta isla !",
-        "¡La gente cae a mis pies al verme llegar! Mis enemigos más sabios corren al verme llegar - Veo gente como tú arrastrándose por el suelo de los bares.",
-        "¡Demasiado bobo para mi nivel de inteligencia! ¡ Tengo el coraje y la técnica de un maestro !"
-            };
+            "¡Luchas como un granjero! ¡ Ordeñaré hasta la última gota de sangre de tu cuerpo !",
+            "¡No hay palabras para describir lo asqueroso que eres! Ya no hay técnicas que te puedan salvar.  ",
+            "¡He hablado con simios más educados que tu! Ahora entiendo lo que significan basura y estupidez.",
+            "¡No pienso aguantar tu insolencia aquí sentado! ¡ Eres como un dolor en la parte baja de la espalda !",
+            "¡Mi pañuelo limpiará tu sangre!",
+            "¡Ha llegado tu HORA, palurdo de ocho patas! Hoy te tengo preparada una larga y dura lección.",
+            "¿Has dejado ya de usar pañales? Espero que tengas un barco para una rápida huida.",
+            "¡Una vez tuve un perro más listo que tu! Sólo he conocido a uno tan cobarde como tú.",
+            "¡Nadie me ha sacado sangre jamás, y nadie lo hará! Nunca me verán luchar tan mal como tú lo haces.",
+            "¡Me das ganas de vomitar! Si tu hermano es como tú, mejor casarse con un cerdo.",
+            "¡Tienes los modales de un mendigo! Cada palabra que sale de tu boca es una estupidez.",
+            "¡He oído que eres un soplón despreciable! Mi espada es famosa en todo el Caribe ¡ Mi nombre es temido en cada sucio rincón de esta isla !",
+            "¡La gente cae a mis pies al verme llegar! Mis enemigos más sabios corren al verme llegar - Veo gente como tú arrastrándose por el suelo de los bares.",
+            "¡Demasiado bobo para mi nivel de inteligencia! ¡ Tengo el coraje y la técnica de un maestro !"
+    };
 
     // creamos una array con cada respuesta
     public static final String[] arrayRespuestas = {
@@ -49,39 +48,41 @@ public class Main {
     private static final int VIDA_JUGADOR = 10;
     private static final int NUM_PIRATES = 3;
 
-
     public static void main(String[] args) {
         Random random = new Random();
-        //cream el objecte scanner
+        // cream el objecte scanner
         Scanner sc = new Scanner(System.in);
-        //cream el objecte illa. Illa genera un conjunt aleatori de pirates. Implementat al constructor
+        // cream el objecte illa. Illa genera un conjunt aleatori de pirates.
+        // Implementat al constructor
         Illa illa = new Illa();
-        //variables boolean del joc
+        // variables boolean del joc
         boolean salir = false, guanyar = false;
-         //demanam el nom del jugador y cream el objecte heroi amb 10 vides (constant)
+        // demanam el nom del jugador y cream el objecte heroi amb 10 vides (constant)
         System.out.println("Benvingut a Monkey Island. Introdueix el teu nom: ");
 
         String heroiNom = sc.nextLine();
         Heroi heroi = new Heroi(heroiNom, VIDA_JUGADOR);
 
-        //bucle por cada pirata
-        for(int i = 0; i<NUM_PIRATES; i++){
-            //bucle por insultos del pirata (3)
+        // bucle por cada pirata
+        for (int i = 0; i < NUM_PIRATES; i++) {
+
             System.out.println("pirata " + i);
-            salir=false;
+            salir = false;
+            guanyar = false;
+            // bucle por cada insulto del pirata
             for (int j = 0; j < 3; j++) {
-                
-                while(!salir){
+                salir = false;
+                while (!salir && !guanyar) {
                     System.out.println("insulto " + j);
-                    //obtenemos el insulto
-                    //respondemos
-                    Insult insult1 = illa.vullUnPirata(0).getInsult(0), insult2 = new Insult(), insult3 = new Insult();
+                    // obtenemos el insulto
+                    // respondemos
+                    Insult insult1 = illa.vullUnPirata(0).getInsult(i), insult2 = new Insult(), insult3 = new Insult();
                     Insult insultCorrecte = insult1;
 
                     Insult[] arrayInsult = {
-                        insult1,
-                        insult2,
-                        insult3,
+                            insult1,
+                            insult2,
+                            insult3,
                     };
 
                     // mezclamos el array para imprimirlas por pantalla en un orden aleatorio con
@@ -93,24 +94,30 @@ public class Main {
                         arrayInsult[l] = aux;
                     }
 
-                    System.out.println(insult1.getInsultText());
-                    System.out.println(insult2.getInsultText());
-                    System.out.println(insult3.getInsultText());
+                    // usar for. Obtener 3 como constante. Modifica en el for
+                    System.out.println(arrayInsult[0].getInsultText());
+                    System.out.println(arrayInsult[1].getInsultText());
+                    System.out.println(arrayInsult[2].getInsultText());
 
+                    // preguntamos que respuesta queremos
                     int respuesta = heroi.defensar();
-                    //si acertamos
-                    if(arrayInsult[respuesta].equals(insultCorrecte)){
+                    // guardamos en una varaible el texto de esta respuesta
+                    String respuestaString = arrayInsult[respuesta].getInsultText();
+                    // si acertamos el pirata pierde una vida
+                    // comparamos el texto de la respuesta correcta con el texto de la respuesta
+                    // elegida
+                    if (respuestaString.equals(insultCorrecte.getInsultText())) {
                         System.out.println("acierto");
-                        if(!illa.vullUnPirata(i).vida()) {
+                        if (!illa.vullUnPirata(i).vida()) {
                             System.out.println("el pirata pierde");
                             salir = true;
-                    }
-                    }
-                    else {
+                        }
+                        // si no, el jugador pierde una vida
+                    } else {
                         System.out.println("error");
-                        if(!heroi.vida()) {
+                        if (!heroi.vida()) {
                             System.out.println("el jugador pierde");
-                            salir = true;
+                            guanyar = true;
                         }
                     }
                 }
