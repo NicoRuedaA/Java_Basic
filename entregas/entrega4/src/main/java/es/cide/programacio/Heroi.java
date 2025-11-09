@@ -20,7 +20,7 @@ public class Heroi {
 
     public boolean vida() {
         this.vida--;
-        System.out.println(this.vida);
+        System.out.println("heroi vida: " + this.vida);
         if (this.vida > 0)
             return true;
         return false;
@@ -31,14 +31,13 @@ public class Heroi {
         int res = 0;
         Insult insult2 = new Insult(), insult3 = new Insult();
 
-        System.out.println(insult2.getInsultText());
-        System.out.println(insult3.getInsultText());
+        System.out.println(insult2.getInsulto());
+        System.out.println(insult3.getInsulto());
 
         while (res < 1 || res > 3) {
             // try {
             System.out.println("Introdueix la teva resposta 1-3");
             res = scHeroi.nextInt();
-
             // }
             /*
              * catch (InputMismatchException e) {
@@ -47,9 +46,7 @@ public class Heroi {
              * }
              */
         }
-
         // scHeroi.close();
-
         return res;
     }
 }

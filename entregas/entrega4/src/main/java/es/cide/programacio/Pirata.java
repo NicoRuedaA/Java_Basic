@@ -4,28 +4,27 @@ import java.util.Random;
 
 public class Pirata {
     private static final int NUM_INSULTS = 3;
-    private static final int VIDA_MAX = 7;
-    private static final int VIDA_MIN = 3;
+    private static final int VIDA_MAX = 3;
+    private static final int VIDA_MIN = 1;
     private Random random = new Random();
     private String nom;
     private int vida, insultActual;
     private Insult[] arrInsults;
 
-    private int id;
+    private int numeroPirata;
     private int contador = 0;
 
     // Constructor
     public Pirata() {
         this.vida = random.nextInt(VIDA_MIN, VIDA_MAX) + 1;
-        id = contador++;
-        this.nom = "Pirata_" + id;
+        this.numeroPirata = contador++;
+        this.nom = "Pirata " + numeroPirata;
         this.arrInsults = new Insult[NUM_INSULTS];
         this.insultActual = 0;
         // System.out.println("Creando pirata con vida: " + vida);
         for (int i = 0; i < arrInsults.length; i++) {
             arrInsults[i] = new Insult();
-            // System.out.println(" → Insulto " + i + " creado: " +
-            // arrInsults[i].getInsultText());
+
         }
     }
 

@@ -8,8 +8,12 @@ public class Insult {
     private int insult;
 
     public Insult() {
+        do {
+            // generamos un insulto aleatorio
+            this.insult = random.nextInt(Main.arrayInsultosSize());
+        } while (!Main.estaUsadoElInsulto(insult));
+        Main.usarInsulto(insult);
 
-        this.insult = random.nextInt(Main.arrayInsultos.length);
     }
 
     // construcotr para un insulto concreto (posicion en el array)
@@ -27,15 +31,15 @@ public class Insult {
      */
 
     public boolean respuestaCorrecta(String s) {
-        return s.equals(Main.arrayRespuestas[this.insult]);
+        return s.equals(Main.getRespuesta(this.insult));
     }
 
     public String getResposta(int x) {
-        return Main.arrayRespuestas[x];
+        return Main.getRespuesta(this.insult);
     }
 
-    public String getInsultText() {
-        return Main.arrayInsultos[this.insult];
+    public String getInsulto() {
+        return Main.getInsulto(this.insult);
     }
 
 }
