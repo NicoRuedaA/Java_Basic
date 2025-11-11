@@ -15,24 +15,6 @@ public class Insult {
         this.insult = x;
     }
 
-    /*
-     * //creamos y devolvemos un insult aleatorio
-     * public Insult getInsultAleatori(){
-     * Insult nouInsult = new Insult(random.nextInt(arrayInsultos.length));
-     * return nouInsult;
-     * }
-     */
-
-    /*
-     * public boolean respuestaCorrecta(String s) {
-     * return s.equals(Main.getRespuesta(this.insult));
-     * }
-     * 
-     * public String getResposta(int x) {
-     * return Main.getRespuesta(this.insult);
-     * }
-     */
-
     public int getInsulto() {
         return this.insult;
     }

@@ -10,9 +10,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-    // creamos un array con cada pregunta
-    private static final String[] arrayInsultos = {
-            "¡Luchas como un granjero! ¡ Ordeñaré hasta la última gota de sangre de tu cuerpo !",
+    // creamos un array con cada pregunta y su sucesiva respuesta. 
+    private static final String[][] arrayInsultos = {
+            {"¡Luchas como un granjero! ¡ Ordeñaré hasta la última gota de sangre de tu cuerpo !",
             "¡No hay palabras para describir lo asqueroso que eres! Ya no hay técnicas que te puedan salvar.  ",
             "¡He hablado con simios más educados que tu! Ahora entiendo lo que significan basura y estupidez.",
             "¡No pienso aguantar tu insolencia aquí sentado! ¡ Eres como un dolor en la parte baja de la espalda !",
@@ -39,12 +39,8 @@ public class Main {
             "¡Tu voz suena como un huracán con resaca!",
             "¡Tu honor vale menos que una moneda mordida!",
             "¡Nadie teme a un pirata con olor a ron barato!",
-            "¡Si fueras más tonto, te confundirían con el ancla!"
-
-    };
-    // creamos una array con cada respuesta
-    private static final String[] arrayRespuestas = {
-            "Qué apropiado, tú peleas como una vaca.",
+            "¡Si fueras más tonto, te confundirían con el ancla!"},
+            {"Qué apropiado, tú peleas como una vaca.",
             "Sí que las hay, sólo que nunca las has aprendido.",
             "Me alegra que asistieras a tu reunión familiar diaria.",
             "Ya te están fastidiando otra vez las almorranas, ¿Eh?",
@@ -71,8 +67,7 @@ public class Main {
             "¡Y aún así tiene más ritmo que tus insultos!",
             "¡Entonces tu palabra debe ser de cobre falso!",
             "¡Nadie respeta a uno que lo diluye con agua!",
-            "Y tú, con el agujero que hunde el barco."
-    };
+            "Y tú, con el agujero que hunde el barco."}  };
 
     private static boolean[] arrayInsultosUsados = new boolean[arrayInsultos.length];
     private static final int VIDA_JUGADOR = 10;
@@ -86,7 +81,7 @@ public class Main {
     }
 
     public static String getText(int x) {
-        return arrayRespuestas[x];
+        return arrayInsultos[x][0];
     }
 
     public static void main(String[] args) {
@@ -94,7 +89,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Illa illa = new Illa(arrayInsultos);
         // variables boolean
-        boolean acabarRonda = false, acabarJuego = false;
+        boolean acabarJuego = false;
         // pedimos el nombre para el usuario
         System.out.println("Benvingut a Monkey Island. Introdueix el teu nom: ");
         String heroiNom = sc.nextLine();
@@ -109,23 +104,12 @@ public class Main {
                 // bucle por cada insulto del pirata
                 for (int j = 0; j < 3; j++) {
                     while (!acabarJuego) {
-                        System.out.println("pirata: " + i);
-                        System.out.println("insulto: " + j);
-
-                        // iniciamos una ronda contra el pirata
+                        System.out.println("pirata: " + i + " insulto: " + j);
                         String respuestaElegida = heroi.defensar(arrayInsultos,
-                                illa.vullUnPirata(i).getInsult(j));
-                        /*
-                         * boolean respuesta = heroi.defensar(arrayInsultos,
-                         * illa.vullUnPirata(i).getInsult(j).getInsulto());
-                         */
-
-                        // esto está mal, no tiene que ser i sino el insulto que stamos usando en este
-                        // momento
-                        // seria pirata i insulto j
-
+                                illa.vullUnPirata(i).getInsultActual());
                         System.out.println("respuesta en main : " + illa.vullUnPirata(i).getInsult(j).getTexto());
-                        boolean respuesta = illa.vullUnPirata(i).getInsult(j).getTexto().equals(respuestaElegida);
+                        //boolean respuesta = illa.vullUnPirata(i).getInsult(j).getTexto().equals(respuestaElegida);
+                        boolean respuesta = illa.vullUnPirata(i).replica(respuestaElegida);
                         if (respuesta) {
                             System.out.println("acierto");
                             if (!illa.vullUnPirata(i).vida()) {

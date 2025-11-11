@@ -8,14 +8,15 @@ public class Pirata {
     private static final int VIDA_MIN = 1;
     private Random random = new Random();
     private String nom;
-    private int vida;
+    private int vida, insultActual;
     private Insult[] arrayInsultos;
 
     // un contador para el nombre del pirata
     private int numeroPirata = 1;
 
     // Constructor
-    public Pirata(String[] arrIns) {
+    public Pirata(String[][] arrIns) {
+        this.insultActual=0;
         Random random = new Random();
         // le asignamos una vida aleatoria al pirata
         this.vida = random.nextInt(VIDA_MIN, VIDA_MAX) + 1;
@@ -24,9 +25,10 @@ public class Pirata {
         this.nom = "Pirata " + numeroPirata;
         // creamos un array de Insultos
         this.arrayInsultos = new Insult[NUM_INSULTS];
-        int x = 0;
+        
         for (int i = 0; i < arrayInsultos.length; i++) {
             boolean salir = false;
+            System.out.println(arrIns.length);
             do {
                 int aux = random.nextInt(arrIns.length);
                 if (!Main.estaUsadoElInsulto(aux)) {
@@ -35,12 +37,13 @@ public class Pirata {
                     arrayInsultos[i] = new Insult(aux);
                 }
             } while (!salir);
+            System.out.println("Aqui no peta");
             // indicamos que el insulto está usado
-
         }
     }
 
     public Pirata(int x, int y, int z) {
+        this.insultActual=0;
         // no lo uso en esta version
         this.vida = random.nextInt(VIDA_MIN, VIDA_MAX) + 1;
         numeroPirata++;
@@ -59,14 +62,9 @@ public class Pirata {
     }
 
     public boolean replica(String s) {
-        /*
-         * Insult insultComparar = arrInsults[insultActual];
-         * boolean correcto = insultComparar.respuestaCorrecta(s);
-         * return correcto;
-         */
-        System.out.println("replica() de Pirata sin implementar");
-        return true;
-
+        boolean coincide = arrayInsultos[insultActual].equals(s); 
+        this.insultActual++;
+        return coincide;
     }
 
     public boolean vida() {
@@ -86,9 +84,7 @@ public class Pirata {
     }
 
     public Insult getInsultActual() {
-        // return this.arrInsults[insultActual];
-        System.out.println("Falt aimplementar getInsulstActual()");
-        return new Insult();
+        return arrayInsultos[insultActual];
     }
 
     public Insult getInsult(int x) {

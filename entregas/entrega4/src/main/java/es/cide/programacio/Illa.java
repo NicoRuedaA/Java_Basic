@@ -12,17 +12,19 @@ public class Illa {
     private Pirata[] arrayPiratas;
 
     // Constructor
-    public Illa(String[] arrayInsultos) {
+    public Illa(String[][] arrayInsultos) {
         mida = random.nextInt(MIDA_MAX - MIDA_MIN + 1) + MIDA_MIN;
         this.arrayPiratas = new Pirata[mida];
+        
         for (int i = 0; i < arrayPiratas.length; i++) {
-            arrayPiratas[i] = new Pirata(arrayInsultos); 
-        }
+            arrayPiratas[i] = new Pirata(arrayInsultos);
+        }        
     }
 
     public Pirata vullUnPirata(int index) {
         return arrayPiratas[index];
     }
+
 
     public Pirata[] getArrayPiratas() {
         return arrayPiratas;

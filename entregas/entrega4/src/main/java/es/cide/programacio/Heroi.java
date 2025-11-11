@@ -27,19 +27,15 @@ public class Heroi {
         return false;
     }
 
-    public String defensar(String[] arrIns, Insult insPirata) {
+    public String defensar(String[][] arrIns, Insult insPirata) {
         Random random = new Random();
         Scanner scHeroi = new Scanner(System.in);
-        int respuesta = 0;
-        // obtenemos el insulto, lo guardamos en una array y creamos 2 aleatorias
-
+        int respuesta = 0, x, y;;
         boolean salir = false;
-        int x, y;
 
+        //generamos 2 numeros aleatorios para los intultos. Nos aseguramos que no sean igual a la respuesta generada
         do {
-
             x = random.nextInt(arrIns.length);
-
             if (x != insPirata.getInsulto())
                 salir = true;
         } while (!salir);
@@ -52,7 +48,6 @@ public class Heroi {
 
         Insult[] arrayInsultosPirata = {
                 insPirata,
-                // hacer que sea diferente a estos dos
                 new Insult(x),
                 new Insult(y),
         };
