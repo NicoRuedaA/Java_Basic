@@ -8,37 +8,65 @@ public class Pirata {
     private static final int VIDA_MIN = 1;
     private Random random = new Random();
     private String nom;
-    private int vida, insultActual;
-    private Insult[] arrInsults;
+    private int vida;
+    private Insult[] arrayInsultos;
 
-    private int numeroPirata;
-    private int contador = 0;
+    // un contador para el nombre del pirata
+    private int numeroPirata = 1;
 
     // Constructor
-    public Pirata() {
+    public Pirata(String[] arrIns) {
+        Random random = new Random();
+        // le asignamos una vida aleatoria al pirata
         this.vida = random.nextInt(VIDA_MIN, VIDA_MAX) + 1;
-        this.numeroPirata = contador++;
+        numeroPirata++;
+        // el nombr del pirata es su ¨numero¨
         this.nom = "Pirata " + numeroPirata;
-        this.arrInsults = new Insult[NUM_INSULTS];
-        this.insultActual = 0;
-        // System.out.println("Creando pirata con vida: " + vida);
-        for (int i = 0; i < arrInsults.length; i++) {
-            arrInsults[i] = new Insult();
+        // creamos un array de Insultos
+        this.arrayInsultos = new Insult[NUM_INSULTS];
+        int x = 0;
+        for (int i = 0; i < arrayInsultos.length; i++) {
+            boolean salir = false;
+            do {
+                int aux = random.nextInt(arrIns.length);
+                if (!Main.estaUsadoElInsulto(aux)) {
+                    Main.usarInsulto(aux);
+                    salir = true;
+                    arrayInsultos[i] = new Insult(aux);
+                }
+            } while (!salir);
+            // indicamos que el insulto está usado
 
         }
     }
 
+    public Pirata(int x, int y, int z) {
+        // no lo uso en esta version
+        this.vida = random.nextInt(VIDA_MIN, VIDA_MAX) + 1;
+        numeroPirata++;
+        this.nom = "Pirata " + numeroPirata;
+        this.arrayInsultos = new Insult[NUM_INSULTS];
+        // this.insultActual = 0;
+        arrayInsultos[0] = new Insult(x);
+        arrayInsultos[1] = new Insult(y);
+        arrayInsultos[2] = new Insult(z);
+    }
+
     public Insult insultar() {
         int numRandom = random.nextInt(NUM_INSULTS);
-        Insult ins = this.arrInsults[numRandom];
-        insultActual = numRandom;
+        Insult ins = this.arrayInsultos[numRandom];
         return ins;
     }
 
     public boolean replica(String s) {
-        Insult insultComparar = arrInsults[insultActual];
-        boolean correcto = insultComparar.respuestaCorrecta(s);
-        return correcto;
+        /*
+         * Insult insultComparar = arrInsults[insultActual];
+         * boolean correcto = insultComparar.respuestaCorrecta(s);
+         * return correcto;
+         */
+        System.out.println("replica() de Pirata sin implementar");
+        return true;
+
     }
 
     public boolean vida() {
@@ -58,11 +86,13 @@ public class Pirata {
     }
 
     public Insult getInsultActual() {
-        return this.arrInsults[insultActual];
+        // return this.arrInsults[insultActual];
+        System.out.println("Falt aimplementar getInsulstActual()");
+        return new Insult();
     }
 
     public Insult getInsult(int x) {
-        return this.arrInsults[x];
+        return this.arrayInsultos[x];
 
     }
 

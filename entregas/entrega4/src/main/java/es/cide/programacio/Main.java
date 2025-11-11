@@ -73,111 +73,65 @@ public class Main {
             "¡Nadie respeta a uno que lo diluye con agua!",
             "Y tú, con el agujero que hunde el barco."
     };
-    public static boolean[] arrayInsultosUsados = new boolean[arrayInsultos.length];
+
+    private static boolean[] arrayInsultosUsados = new boolean[arrayInsultos.length];
     private static final int VIDA_JUGADOR = 10;
-    private static final int NUM_PIRATES = 3;
+
+    public static boolean estaUsadoElInsulto(int x) {
+        return arrayInsultosUsados[x];
+    }
 
     public static void usarInsulto(int x) {
-        if (x > arrayInsultosSize())
-            System.out.println("Error. Numero mayor que tamaño de la array");
         arrayInsultosUsados[x] = true;
     }
 
-    public static boolean estaUsadoElInsulto(int x) {
-        if (x > arrayInsultosSize()) {
-            System.out.println("Error. Numero mayor que tamaño de la array");
-            return false;
-        }
-        return arrayInsultosUsados[x] == true;
-    }
-
-    public static int arrayInsultosSize() {
-        return arrayInsultos.length;
-    }
-
-    public static String getRespuesta(int x) {
-        if (x > arrayInsultosSize()) {
-            System.out.println("Error. Numero mayor que tamaño de la array");
-            return " ";
-        }
+    public static String getText(int x) {
         return arrayRespuestas[x];
     }
 
-    public static String getInsulto(int x) {
-        if (x > arrayInsultosSize()) {
-            System.out.println("Error. Numero mayor que tamaño de la array");
-            return " ";
-        }
-        return arrayInsultos[x];
-    }
-
     public static void main(String[] args) {
-        System.out.println("Benvingut a Monkey Island. Introdueix el teu nom: ");
         Random random = new Random();
-        // cream el objecte scanner
         Scanner sc = new Scanner(System.in);
-        // cream el objecte illa. Illa genera un conjunt aleatori de pirates.
-        // Implementat al constructor
-        Illa illa = new Illa();
-        // variables boolean del joc
+        Illa illa = new Illa(arrayInsultos);
+        // variables boolean
         boolean acabarRonda = false, acabarJuego = false;
-        // demanam el nom del jugador y cream el objecte heroi amb 10 vides (constant)
+        // pedimos el nombre para el usuario
         System.out.println("Benvingut a Monkey Island. Introdueix el teu nom: ");
-
         String heroiNom = sc.nextLine();
+        // creamos un protagonista con el nombre
         Heroi heroi = new Heroi(heroiNom, VIDA_JUGADOR);
 
         // bucle por cada pirata
-        for (int i = 0; i < NUM_PIRATES; i++) {
-            acabarRonda = false;
+        for (int i = 0; i < illa.getMaxPiratas(); i++) {
+            // acabarRonda = false;
             // si el jugador no tiene vidas, obviamos el bucle de insultos
             if (!acabarJuego) {
                 // bucle por cada insulto del pirata
                 for (int j = 0; j < 3; j++) {
-                    while (!acabarRonda || !acabarJuego) {
+                    while (!acabarJuego) {
                         System.out.println("pirata: " + i);
                         System.out.println("insulto: " + j);
-                        // obtenemos el insulto
-                        // respondemos
-                        Insult insult1 = illa.vullUnPirata(0).getInsult(i), insult2 = new Insult(),
-                                insult3 = new Insult();
-                        Insult insultCorrecte = insult1;
 
-                        Insult[] arrayInsult = {
-                                insult1,
-                                insult2,
-                                insult3,
-                        };
+                        // iniciamos una ronda contra el pirata
+                        String respuestaElegida = heroi.defensar(arrayInsultos,
+                                illa.vullUnPirata(i).getInsult(j));
+                        /*
+                         * boolean respuesta = heroi.defensar(arrayInsultos,
+                         * illa.vullUnPirata(i).getInsult(j).getInsulto());
+                         */
 
-                        // mezclamos el array para imprimirlas por pantalla en un orden aleatorio con
-                        // Fisher-Yates
-                        for (int k = arrayInsult.length - 1; k > 0; k--) {
-                            int l = random.nextInt(k + 1);
-                            Insult aux = arrayInsult[k];
-                            arrayInsult[k] = arrayInsult[l];
-                            arrayInsult[l] = aux;
-                        }
+                        // esto está mal, no tiene que ser i sino el insulto que stamos usando en este
+                        // momento
+                        // seria pirata i insulto j
 
-                        // usar for. Obtener 3 como constante. Modifica en el for
-                        System.out.println(arrayInsult[0].getInsulto());
-                        System.out.println(arrayInsult[1].getInsulto());
-                        System.out.println(arrayInsult[2].getInsulto());
-
-                        // preguntamos que respuesta queremos
-                        int respuesta = heroi.defensar();
-                        // guardamos en una varaible el texto de esta respuesta
-                        String respuestaString = arrayInsult[respuesta].getInsulto();
-                        // si acertamos el pirata pierde una vida
-                        // comparamos el texto de la respuesta correcta con el texto de la respuesta
-                        // elegida
-                        if (respuestaString.equals(insultCorrecte.getInsulto())) {
-
+                        System.out.println("respuesta en main : " + illa.vullUnPirata(i).getInsult(j).getTexto());
+                        boolean respuesta = illa.vullUnPirata(i).getInsult(j).getTexto().equals(respuestaElegida);
+                        if (respuesta) {
                             System.out.println("acierto");
                             if (!illa.vullUnPirata(i).vida()) {
                                 System.out.println("el pirata pierde");
-                                acabarRonda = true;
+                                // acabarRonda = true;
                             }
-
                             System.out.println("vida pirata: " + illa.vullUnPirata(i).getVida());
                             // si no, el jugador pierde una vida
                         } else {
@@ -189,13 +143,11 @@ public class Main {
                             }
                         }
                     }
-
                 }
             }
         }
 
         System.out.println("FIN DEL JUEGO");
-
         sc.close();
     }
 }
