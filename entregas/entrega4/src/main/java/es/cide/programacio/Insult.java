@@ -20,6 +20,7 @@ public class Insult {
     }
 
     public String getTexto() {
+        System.out.println("error aqui");
         return Main.getText(this.insult);
     }
 

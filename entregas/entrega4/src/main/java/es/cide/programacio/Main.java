@@ -69,7 +69,7 @@ public class Main {
             "¡Nadie respeta a uno que lo diluye con agua!",
             "Y tú, con el agujero que hunde el barco."}  };
 
-    private static boolean[] arrayInsultosUsados = new boolean[arrayInsultos.length];
+    private static boolean[] arrayInsultosUsados = new boolean[arrayInsultos[0].length];
     private static final int VIDA_JUGADOR = 10;
 
     public static boolean estaUsadoElInsulto(int x) {
@@ -81,21 +81,46 @@ public class Main {
     }
 
     public static String getText(int x) {
+        System.out.println("error aqui");
+        System.out.println(arrayInsultos[x].length);
         return arrayInsultos[x][0];
     }
 
     public static void main(String[] args) {
         Random random = new Random();
         Scanner sc = new Scanner(System.in);
+
         Illa illa = new Illa(arrayInsultos);
         // variables boolean
         boolean acabarJuego = false;
         // pedimos el nombre para el usuario
-        System.out.println("Benvingut a Monkey Island. Introdueix el teu nom: ");
+        //System.out.println("Benvingut a Monkey Island. Introdueix el teu nom: ");
+        
+        System.out.println("      __________     _________   __     __   __   __    _______  _    __\r\n" + //
+                        "     / __   __  |   / _____  /  /  |   / /  / /  / /   / _____/ | |  / /\r\n" + //
+                        "    / /  | /  | |  / /    / /  / / |  / /  / /_/ /    / /_      | | / /\r\n" + //
+                        "   / /  / /  / /  / /    / /  / /| | / /  /    /     /   /      | |/ /\r\n" + //
+                        "  / /  / /  / /  / /    / /  / / | |/ /  / /\\ \\     / __/        \\  /\r\n" + //
+                        " / /  / /  / /  / /____/ /  / /  | / /  / /  \\ \\   / /_____      / /\r\n" + //
+                        "/_/  /_/  /_/  /________/  /_/   |__/  /_/    \\_\\ /_______/     /_/\r\n" + //
+                        "\r\n" + //
+                        "      __  ______    __          ___     __     __  ____        \r\n" + //
+                        "     / / / ___  |  / /         /__ /   /  |   / / / _  |    \r\n" + //
+                        "    / / / /_  |_/ / /        / / / /  / / |  / / / / | |        \r\n" + //
+                        "   / /  \\__ \\    / /        / /_/ /  / /| | / / / /  / /            \r\n" + //
+                        "  / /      | \\  / /       / ____  / / / | |/ / / /  / /            \r\n" + //
+                        " / / ______/ / / /_____  / /   / / / /  | / / / /__/ /              \r\n" + //
+                        "/_/ /_______/ /_______/ /_/   /_/ /_/   |__/ /______/      \r\n" + //
+                        "                                                            ");
+        
+                        //elegir isla
+        System.out.println("Bienvenido a Monkey Island. Introduce tu nombre");
+
         String heroiNom = sc.nextLine();
+
         // creamos un protagonista con el nombre
         Heroi heroi = new Heroi(heroiNom, VIDA_JUGADOR);
-
+        
         // bucle por cada pirata
         for (int i = 0; i < illa.getMaxPiratas(); i++) {
             // acabarRonda = false;
@@ -107,7 +132,11 @@ public class Main {
                         System.out.println("pirata: " + i + " insulto: " + j);
                         String respuestaElegida = heroi.defensar(arrayInsultos,
                                 illa.vullUnPirata(i).getInsultActual());
-                        System.out.println("respuesta en main : " + illa.vullUnPirata(i).getInsult(j).getTexto());
+                        System.out.println("respuesta en main : " + illa.vullUnPirata(i).getNom());
+                        //System.out.println("respuesta en main : " + illa.vullUnPirata(i).getInsult(j).getTexto());
+                        System.out.println(illa.vullUnPirata(i).getInsult(j).getInsulto());
+
+                        
                         //boolean respuesta = illa.vullUnPirata(i).getInsult(j).getTexto().equals(respuestaElegida);
                         boolean respuesta = illa.vullUnPirata(i).replica(respuestaElegida);
                         if (respuesta) {

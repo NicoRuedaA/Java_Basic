@@ -51,6 +51,7 @@ public class Heroi {
                 new Insult(x),
                 new Insult(y),
         };
+        
         // mezclamos el array para imprimirlas por pantalla en un orden aleatorio con
         // Fisher-Yates
         for (int k = arrayInsultosPirata.length - 1; k > 0; k--) {
@@ -59,12 +60,13 @@ public class Heroi {
             arrayInsultosPirata[k] = arrayInsultosPirata[l];
             arrayInsultosPirata[l] = aux;
         }
-
+        
         // usar for. Obtener 3 como constante. Modifica en el for
         System.out.println(arrayInsultosPirata[0].getTexto());
+        System.out.println("error aqui");
         System.out.println(arrayInsultosPirata[1].getTexto());
         System.out.println(arrayInsultosPirata[2].getTexto());
-
+        
         System.out.println(insPirata.getTexto());
         while (respuesta < 1 || respuesta > 3) {
             // try {
@@ -82,6 +84,7 @@ public class Heroi {
         // scHeroi.close();
         // return arrIns[respuesta].equals(arrIns[insPirata]);
         System.out.println("respuesta elegida: " + arrayInsultosPirata[respuesta - 1].getTexto());
+        
         return arrayInsultosPirata[respuesta - 1].getTexto();
     }
 }

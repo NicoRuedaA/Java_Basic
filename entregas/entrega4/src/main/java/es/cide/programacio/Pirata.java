@@ -28,16 +28,20 @@ public class Pirata {
         
         for (int i = 0; i < arrayInsultos.length; i++) {
             boolean salir = false;
-            System.out.println(arrIns.length);
             do {
-                int aux = random.nextInt(arrIns.length);
+                
+                int aux = random.nextInt(arrIns[0].length);
                 if (!Main.estaUsadoElInsulto(aux)) {
+                    
                     Main.usarInsulto(aux);
+                    
                     salir = true;
+                    
                     arrayInsultos[i] = new Insult(aux);
+                    
                 }
             } while (!salir);
-            System.out.println("Aqui no peta");
+            
             // indicamos que el insulto está usado
         }
     }
