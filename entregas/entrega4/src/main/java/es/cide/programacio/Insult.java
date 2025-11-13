@@ -16,12 +16,16 @@ public class Insult {
     }
 
     public int getInsulto() {
+        //devuelve la posición
         return this.insult;
     }
 
-    public String getTexto() {
-        System.out.println("error aqui");
-        return Main.getText(this.insult);
+    public String getTextoInsulto() {
+        return Main.getTextoInsulto(this.insult);
+    }
+
+    public String getTextoRespuesta() {
+        return Main.getTextoRespuesta(this.insult);
     }
 
 }

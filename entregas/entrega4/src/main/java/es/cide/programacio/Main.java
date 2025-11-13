@@ -6,11 +6,20 @@
 
 package es.cide.programacio;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
     // creamos un array con cada pregunta y su sucesiva respuesta. 
+
+    public static final String RESET = "\u001B[0m";
+    public static final String ROJO = "\u001B[31m";
+    public static final String VERDE = "\u001B[32m";
+    public static final String AMARILLO = "\u001B[33m";
+    public static final String AZUL = "\u001B[34m";
+    public static final String MORADO = "\u001B[35m";
+    public static final String CYAN = "\u001B[36m";
+    public static final String BLANCO = "\u001B[37m";
+
     private static final String[][] arrayInsultos = {
             {"¡Luchas como un granjero! ¡ Ordeñaré hasta la última gota de sangre de tu cuerpo !",
             "¡No hay palabras para describir lo asqueroso que eres! Ya no hay técnicas que te puedan salvar.  ",
@@ -69,6 +78,7 @@ public class Main {
             "¡Nadie respeta a uno que lo diluye con agua!",
             "Y tú, con el agujero que hunde el barco."}  };
 
+
     private static boolean[] arrayInsultosUsados = new boolean[arrayInsultos[0].length];
     private static final int VIDA_JUGADOR = 10;
 
@@ -80,87 +90,134 @@ public class Main {
         arrayInsultosUsados[x] = true;
     }
 
-    public static String getText(int x) {
-        System.out.println("error aqui");
-        System.out.println(arrayInsultos[x].length);
-        return arrayInsultos[x][0];
+    public static String getTextoInsulto(int x) {
+
+        return arrayInsultos[0][x];
+    }
+
+        public static String getTextoRespuesta(int x) {
+
+        return arrayInsultos[1][x];
     }
 
     public static void main(String[] args) {
-        Random random = new Random();
         Scanner sc = new Scanner(System.in);
-
         Illa illa = new Illa(arrayInsultos);
-        // variables boolean
-        boolean acabarJuego = false;
-        // pedimos el nombre para el usuario
-        //System.out.println("Benvingut a Monkey Island. Introdueix el teu nom: ");
+        Heroi heroi;
+
+        boolean acabarJuego = false;    // variables boolean
+        String heroiNom;
+
+        titulo(illa);   //imprimimos el título "The Secret of Monkey Island"   
+
+        heroiNom = sc.nextLine(); //pedimos el nombre del jugador y creamos un Heroi con este
+        heroi = new Heroi(heroiNom, VIDA_JUGADOR);
+
+        escribirLento("Nuestro héroe " + heroi.getNom() + " se encuentra con " + illa.getNumPiratas()+ " piratas", 30);
+        System.out.println();  
+
+        while(!acabarJuego){
+            mostrarPanel(heroi.getVida(), 10, illa.vullPirataActual().getNom(), illa.vullPirataActual().getVida(), illa.vullPirataActual().getVidaMax(), illa.getInsultoActual().getInsulto(), heroi.getNom()); 
+            
+            System.out.println("el pirata dice : " + illa.getInsultoActual().getTextoInsulto()); System.out.println();
+
+            sprites();
+
+            String respuestaElegida = heroi.defensar(arrayInsultos, illa.getInsultoActual());
+
+            System.out.println("respuesta en main : " + illa.getInsultoActual().getTextoInsulto());
+
+            boolean respuesta = illa.vullPirataActual().replica(respuestaElegida);
+            limpiarConsola();
+
+            if (respuesta) {
+                if (!illa.vullPirataActual().vida()) illa.nextPirata();
+            } 
+            else if (!heroi.vida()) acabarJuego = true;
+        }        
         
-        System.out.println("      __________     _________   __     __   __   __    _______  _    __\r\n" + //
-                        "     / __   __  |   / _____  /  /  |   / /  / /  / /   / _____/ | |  / /\r\n" + //
-                        "    / /  | /  | |  / /    / /  / / |  / /  / /_/ /    / /_      | | / /\r\n" + //
-                        "   / /  / /  / /  / /    / /  / /| | / /  /    /     /   /      | |/ /\r\n" + //
-                        "  / /  / /  / /  / /    / /  / / | |/ /  / /\\ \\     / __/        \\  /\r\n" + //
-                        " / /  / /  / /  / /____/ /  / /  | / /  / /  \\ \\   / /_____      / /\r\n" + //
-                        "/_/  /_/  /_/  /________/  /_/   |__/  /_/    \\_\\ /_______/     /_/\r\n" + //
-                        "\r\n" + //
-                        "      __  ______    __          ___     __     __  ____        \r\n" + //
-                        "     / / / ___  |  / /         /__ /   /  |   / / / _  |    \r\n" + //
-                        "    / / / /_  |_/ / /        / / / /  / / |  / / / / | |        \r\n" + //
-                        "   / /  \\__ \\    / /        / /_/ /  / /| | / / / /  / /            \r\n" + //
-                        "  / /      | \\  / /       / ____  / / / | |/ / / /  / /            \r\n" + //
-                        " / / ______/ / / /_____  / /   / / / /  | / / / /__/ /              \r\n" + //
-                        "/_/ /_______/ /_______/ /_/   /_/ /_/   |__/ /______/      \r\n" + //
-                        "                                                            ");
-        
-                        //elegir isla
-        System.out.println("Bienvenido a Monkey Island. Introduce tu nombre");
-
-        String heroiNom = sc.nextLine();
-
-        // creamos un protagonista con el nombre
-        Heroi heroi = new Heroi(heroiNom, VIDA_JUGADOR);
-        
-        // bucle por cada pirata
-        for (int i = 0; i < illa.getMaxPiratas(); i++) {
-            // acabarRonda = false;
-            // si el jugador no tiene vidas, obviamos el bucle de insultos
-            if (!acabarJuego) {
-                // bucle por cada insulto del pirata
-                for (int j = 0; j < 3; j++) {
-                    while (!acabarJuego) {
-                        System.out.println("pirata: " + i + " insulto: " + j);
-                        String respuestaElegida = heroi.defensar(arrayInsultos,
-                                illa.vullUnPirata(i).getInsultActual());
-                        System.out.println("respuesta en main : " + illa.vullUnPirata(i).getNom());
-                        //System.out.println("respuesta en main : " + illa.vullUnPirata(i).getInsult(j).getTexto());
-                        System.out.println(illa.vullUnPirata(i).getInsult(j).getInsulto());
-
-                        
-                        //boolean respuesta = illa.vullUnPirata(i).getInsult(j).getTexto().equals(respuestaElegida);
-                        boolean respuesta = illa.vullUnPirata(i).replica(respuestaElegida);
-                        if (respuesta) {
-                            System.out.println("acierto");
-                            if (!illa.vullUnPirata(i).vida()) {
-                                System.out.println("el pirata pierde");
-                                // acabarRonda = true;
-                            }
-                            System.out.println("vida pirata: " + illa.vullUnPirata(i).getVida());
-                            // si no, el jugador pierde una vida
-                        } else {
-                            System.out.println("error");
-                            if (!heroi.vida()) {
-                                System.out.println("el jugador pierde");
-                                // si el jugador se queda sin vidas, acabamos el juego.
-                                acabarJuego = true;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        System.out.println("FIN DEL JUEGO");
+        finDelJuego();
         sc.close();
     }
+
+
+
+
+    private static void escribirLento(String texto, int delay) {
+    for (char c : texto.toCharArray()) {
+        System.out.print(CYAN);
+        System.out.print(c);
+        try { Thread.sleep(delay); } catch (InterruptedException e) {}
+    }
+    System.out.print(RESET);
+    }
+
+    private static String crearBarraDeVida(int actual, int maximo, int longitud) {
+        // ... (copiar y pegar de la Opción 1) ...
+        actual = Math.max(0, actual);
+        double porcentaje = (double) actual / maximo;
+        int caracteresLlenos = (int) (porcentaje * longitud);
+        int caracteresVacios = longitud - caracteresLlenos;
+        String barra = "[" + "█".repeat(caracteresLlenos) + "░".repeat(caracteresVacios) + "]";
+        return barra;   
+    }
+
+    private static void mostrarPanel(int vidaJugador, int maxVidaJugador, String nombrePirata, 
+                                          int vidaPirata, int maxVidaPirata, int numeroInsulto, String nombreJugador) {
+        
+        int anchoBarra = 20; // Longitud de la barra de vida
+        String barraJugador = crearBarraDeVida(vidaJugador, maxVidaJugador, anchoBarra);
+        String barraPirata = crearBarraDeVida(vidaPirata, maxVidaPirata, anchoBarra);
+
+        System.out.println(ROJO + "╔════════════════════════════════════╗");
+        System.out.println("║         BATALLA DE INSULTOS        ║");
+        System.out.println("╠════════════════════════════════════╣");
+        System.out.println("║  JUGADOR: " + nombreJugador);
+        System.out.println("║    Vida: " + barraJugador + " " + vidaJugador + "/" + maxVidaJugador);
+        System.out.println("║                                    ║");
+        System.out.println("║  PIRATA: " + nombrePirata);
+        System.out.println("║    Vida: " + barraPirata + " " + vidaPirata + "/" + maxVidaPirata);
+        System.out.println("║                                    ║");
+        System.out.println("║  Insulto Actual: #" + numeroInsulto );
+        System.out.println("╚════════════════════════════════════╝" + RESET);
+        System.out.println();
+
+        
+    }
+
+    private static void titulo(Illa i){
+        System.out.println("\r\n" + //
+                                "████████╗██╗░░██╗███████╗░░██████╗███████╗░█████╗░██████╗░███████╗████████╗░░█████╗░███████╗\r\n" + //
+                                "╚══██╔══╝██║░░██║██╔════╝░██╔════╝██╔════╝██╔══██╗██╔══██╗██╔════╝╚══██╔══╝░██╔══██╗██╔════╝\r\n" + //
+                                "░░░██║░░░███████║█████╗░░░╚█████╗░█████╗░░██║░░╚═╝██████╔╝█████╗░░░░░██║░░░░██║░░██║█████╗░░\r\n" + //
+                                "░░░██║░░░██╔══██║██╔══╝░░░░╚═══██╗██╔══╝░░██║░░██╗██╔══██╗██╔══╝░░░░░██║░░░░██║░░██║██╔══╝░░\r\n" + //
+                                "░░░██║░░░██║░░██║███████╗░██████╔╝███████╗╚█████╔╝██║░░██║███████╗░░░██║░░░░╚█████╔╝██║░░░░░\r\n" + //
+                                "░░░╚═╝░░░╚═╝░░╚═╝╚══════╚░═════╝░╚══════╝░╚════╝░╚═╝░░╚═╝╚══════╝░░░╚═╝░░░░░╚════╝░╚═╝░░░░░\r\n" + //
+                                "\r\n" + //
+                                "███╗░░░███╗░█████╗░███╗░░██╗██╗░░██╗███████╗██╗░░░██╗░██╗░██████╗██╗░░░░░░█████╗░███╗░░██╗██████╗░\r\n" + //
+                                "████╗░████║██╔══██╗████╗░██║██║░██╔╝██╔════╝╚██╗░██╔╝░██║██╔════╝██║░░░░░██╔══██╗████╗░██║██╔══██╗\r\n" + //
+                                "██╔████╔██║██║░░██║██╔██╗██║█████═╝░█████╗░░░╚████╔╝░░██║╚█████╗░██║░░░░░███████║██╔██╗██║██║░░██║\r\n" + //
+                                "██║╚██╔╝██║██║░░██║██║╚████║██╔═██╗░██╔══╝░░░░╚██╔╝░░░██║░╚═══██╗██║░░░░░██╔══██║██║╚████║██║░░██║\r\n" + //
+                                "██║░╚═╝░██║╚█████╔╝██║░╚███║██║░╚██╗███████╗░░░██║░░░░██║██████╔╝███████╗██║░░██║██║░╚███║██████╔╝\r\n" + //
+                                "╚═╝░░░░░╚═╝░╚════╝░╚═╝░░╚══╝╚═╝░░╚═╝╚══════╝░░░╚═╝░░░░╚═╝╚═════╝░╚══════╝╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░");
+    System.out.println();
+    escribirLento("Bienvenido a " + i.getNom() + ", introduce tu nombre: ", 30);
+                            
+}
+
+private static void finDelJuego(){
+    System.out.println(ROJO + "FIN DEL JUEGO");
+}
+
+private static void limpiarConsola(){
+    for (int k = 0; k <25; k++) System.out.println();
+}
+
+
+private static void sprites(){
+    System.out.println("       /   \\  \r\n" + //
+                " (·.·)/     \\(·.·)\r\n" + //
+                " <) )        ( (<\r\n" + //
+                " / \\         / \\");
+}
 }

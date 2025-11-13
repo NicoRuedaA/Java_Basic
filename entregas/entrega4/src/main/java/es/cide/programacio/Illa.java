@@ -4,17 +4,23 @@ import java.util.Random;
 
 public class Illa {
 
-    private static final int MIDA_MAX = 7;
-    private static final int MIDA_MIN = 3;
+    String[] nombresIsla = {"La Española", "Isla Antigua", "Icacos", "Booby Cay", "Waterlemon Cay" };
 
-    private int mida;
+    //private static final int MIDA_MAX = 7;
+    //private static final int MIDA_MIN = 3;
+
+    private int mida, pirataActual;
     private Random random = new Random();
     private Pirata[] arrayPiratas;
+    private String nomIlla;
 
     // Constructor
     public Illa(String[][] arrayInsultos) {
-        mida = random.nextInt(MIDA_MAX - MIDA_MIN + 1) + MIDA_MIN;
-        this.arrayPiratas = new Pirata[mida];
+        mida = random.nextInt(5);
+        //creamos una array del tamaño minimo 3, maximo 7 (random + 3)
+        this.arrayPiratas = new Pirata[mida + 3];
+        nomIlla = nombresIsla[mida];
+        this.pirataActual = 0;
         
         for (int i = 0; i < arrayPiratas.length; i++) {
             arrayPiratas[i] = new Pirata(arrayInsultos);
@@ -25,6 +31,10 @@ public class Illa {
         return arrayPiratas[index];
     }
 
+    public Pirata vullPirataActual(){
+        return vullUnPirata(pirataActual);
+    }
+
 
     public Pirata[] getArrayPiratas() {
         return arrayPiratas;
@@ -32,5 +42,28 @@ public class Illa {
 
     public int getMaxPiratas(){
         return arrayPiratas.length;
+    }
+
+    public String getNom(){
+        return this.nomIlla;
+    }
+
+    public int getNumPiratas(){
+        return this.arrayPiratas.length;
+    }
+
+    public boolean nextPirata(){
+        System.out.println("Siguiente pirata");
+        boolean fin = false;
+        this.pirataActual++;
+        if(pirataActual>=arrayPiratas.length){
+            System.out.println("Último pirata encontrado");
+            fin = true;
+        }
+        return fin;
+    }
+
+    public Insult getInsultoActual(){
+        return vullPirataActual().getInsultoActual();
     }
 }

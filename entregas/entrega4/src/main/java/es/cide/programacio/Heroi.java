@@ -20,14 +20,14 @@ public class Heroi {
     }
 
     public boolean vida() {
+        boolean vivo = false;
         this.vida--;
-        System.out.println("heroi vida: " + this.vida);
-        if (this.vida > 0)
-            return true;
-        return false;
+        if (this.vida > 0) vivo = true;
+        return vivo;
     }
 
     public String defensar(String[][] arrIns, Insult insPirata) {
+        
         Random random = new Random();
         Scanner scHeroi = new Scanner(System.in);
         int respuesta = 0, x, y;;
@@ -35,13 +35,13 @@ public class Heroi {
 
         //generamos 2 numeros aleatorios para los intultos. Nos aseguramos que no sean igual a la respuesta generada
         do {
-            x = random.nextInt(arrIns.length);
+            x = random.nextInt(arrIns[0].length);
             if (x != insPirata.getInsulto())
                 salir = true;
         } while (!salir);
 
         do {
-            y = random.nextInt(arrIns.length);
+            y = random.nextInt(arrIns[0].length);
             if (y != insPirata.getInsulto())
                 salir = true;
         } while (!salir);
@@ -62,29 +62,30 @@ public class Heroi {
         }
         
         // usar for. Obtener 3 como constante. Modifica en el for
-        System.out.println(arrayInsultosPirata[0].getTexto());
-        System.out.println("error aqui");
-        System.out.println(arrayInsultosPirata[1].getTexto());
-        System.out.println(arrayInsultosPirata[2].getTexto());
-        
-        System.out.println(insPirata.getTexto());
+        System.out.println(arrayInsultosPirata[0].getTextoRespuesta());
+        System.out.println(arrayInsultosPirata[1].getTextoRespuesta());
+        System.out.println(arrayInsultosPirata[2].getTextoRespuesta());
+
+        System.out.println();
+        System.out.println("insulto correcto " + insPirata.getTextoRespuesta());
         while (respuesta < 1 || respuesta > 3) {
-            // try {
             System.out.println();
             System.out.println("Introdueix la teva resposta 1-3");
             respuesta = scHeroi.nextInt();
-            // }
-            /*
-             * catch (InputMismatchException e) {
-             * System.out.println("Error");
-             * //sc.nextLine();
-             * }
-             */
+            System.out.println();
         }
-        // scHeroi.close();
-        // return arrIns[respuesta].equals(arrIns[insPirata]);
-        System.out.println("respuesta elegida: " + arrayInsultosPirata[respuesta - 1].getTexto());
         
-        return arrayInsultosPirata[respuesta - 1].getTexto();
+        System.out.println("respuesta elegida: " + arrayInsultosPirata[respuesta - 1].getTextoInsulto());
+        
+        return arrayInsultosPirata[respuesta - 1].getTextoInsulto();
+    }
+
+    /**************** */
+    public String getNom(){
+        return this.nom;
+    }
+
+    public int getVida(){
+        return this.vida;
     }
 }

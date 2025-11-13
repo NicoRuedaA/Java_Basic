@@ -8,7 +8,7 @@ public class Pirata {
     private static final int VIDA_MIN = 1;
     private Random random = new Random();
     private String nom;
-    private int vida, insultActual;
+    private int vida, vidaMax, insultActual;
     private Insult[] arrayInsultos;
 
     // un contador para el nombre del pirata
@@ -19,10 +19,13 @@ public class Pirata {
         this.insultActual=0;
         Random random = new Random();
         // le asignamos una vida aleatoria al pirata
+        
         this.vida = random.nextInt(VIDA_MIN, VIDA_MAX) + 1;
+        this.vidaMax= this.vida;
+        this.nom = "Pirata " + numeroPirata;
         numeroPirata++;
         // el nombr del pirata es su ¨numero¨
-        this.nom = "Pirata " + numeroPirata;
+        
         // creamos un array de Insultos
         this.arrayInsultos = new Insult[NUM_INSULTS];
         
@@ -66,16 +69,17 @@ public class Pirata {
     }
 
     public boolean replica(String s) {
-        boolean coincide = arrayInsultos[insultActual].equals(s); 
+        boolean coincide = arrayInsultos[insultActual].getTextoInsulto().equals(s); 
         this.insultActual++;
+        System.out.println(coincide);
         return coincide;
     }
 
     public boolean vida() {
+        boolean vivo = false;
         this.vida--;
-        if (vida > 0)
-            return true;
-        return false;
+        if (vida > 0)  return vivo = true;
+        return vivo;
     }
 
     // GETS Y SETS
@@ -87,11 +91,15 @@ public class Pirata {
         return this.vida;
     }
 
-    public Insult getInsultActual() {
+    public int getVidaMax(){
+        return this.vidaMax;
+    }
+
+    public Insult getInsultoActual() {
         return arrayInsultos[insultActual];
     }
 
-    public Insult getInsult(int x) {
+    public Insult getInsulto(int x) {
         return this.arrayInsultos[x];
 
     }
