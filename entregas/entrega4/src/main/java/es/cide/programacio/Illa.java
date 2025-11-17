@@ -4,10 +4,10 @@ import java.util.Random;
 
 public class Illa {
 
-    String[] nombresIsla = {"La Española", "Isla Antigua", "Icacos", "Booby Cay", "Waterlemon Cay" };
+    String[] nombresIsla = { "La Española", "Isla Antigua", "Icacos", "Booby Cay", "Waterlemon Cay" };
 
-    //private static final int MIDA_MAX = 7;
-    //private static final int MIDA_MIN = 3;
+    // private static final int MIDA_MAX = 7;
+    // private static final int MIDA_MIN = 3;
 
     private int mida, pirataActual;
     private Random random = new Random();
@@ -15,55 +15,53 @@ public class Illa {
     private String nomIlla;
 
     // Constructor
-    public Illa(String[][] arrayInsultos) {
-        mida = random.nextInt(5);
-        //creamos una array del tamaño minimo 3, maximo 7 (random + 3)
+    public Illa(Insult[] arrayInsultos) {
+        mida = random.nextInt(5); // creamos una array del tamaño minimo 3, maximo 7 (random + 3)
         this.arrayPiratas = new Pirata[mida + 3];
-        nomIlla = nombresIsla[mida];
+        nomIlla = nombresIsla[mida]; // Le asignamos un nombre aleatorio a la isla
         this.pirataActual = 0;
-        
+
         for (int i = 0; i < arrayPiratas.length; i++) {
             arrayPiratas[i] = new Pirata(arrayInsultos);
-        }        
+        }
     }
 
     public Pirata vullUnPirata(int index) {
         return arrayPiratas[index];
     }
 
-    public Pirata vullPirataActual(){
+    public Pirata vullPirataActual() {
         return vullUnPirata(pirataActual);
     }
-
 
     public Pirata[] getArrayPiratas() {
         return arrayPiratas;
     }
 
-    public int getMaxPiratas(){
+    public int getMaxPiratas() {
         return arrayPiratas.length;
     }
 
-    public String getNom(){
+    public String getNom() {
         return this.nomIlla;
     }
 
-    public int getNumPiratas(){
+    public int getNumPiratas() {
         return this.arrayPiratas.length;
     }
 
-    public boolean nextPirata(){
+    public boolean nextPirata() {
         System.out.println("Siguiente pirata");
         boolean fin = false;
         this.pirataActual++;
-        if(pirataActual>=arrayPiratas.length){
-            System.out.println("Último pirata encontrado");
+        if (pirataActual >= arrayPiratas.length) {
+            System.out.println("Llegaste al final");
             fin = true;
         }
         return fin;
     }
 
-    public Insult getInsultoActual(){
+    public Insult getInsultoActual() {
         return vullPirataActual().getInsultoActual();
     }
 }

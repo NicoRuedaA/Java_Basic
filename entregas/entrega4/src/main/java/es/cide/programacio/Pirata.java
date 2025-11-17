@@ -6,79 +6,53 @@ public class Pirata {
     private static final int NUM_INSULTS = 3;
     private static final int VIDA_MAX = 3;
     private static final int VIDA_MIN = 1;
-    private Random random = new Random();
     private String nom;
     private int vida, vidaMax;
     private Insult insultActual;
     private Insult[] arrayInsultos;
 
-    // un contador para el nombre del pirata
-    private static int numeroPirata = 1;
+    private static int numeroPirata = 1; // un contador estatico para el nombre del pirata
 
     // Constructor
-    public Pirata(String[][] arrIns) {
+    public Pirata(Insult[] arrIns) {
 
         Random random = new Random();
 
-        // hacemos que el insulto actual sea random
-        this.insultActual = new Insult(random.nextInt(3));
-        // le asignamos una vida aleatoria al pirata
-
-        this.vida = random.nextInt(VIDA_MIN, VIDA_MAX) + 1;
-        this.vidaMax = this.vida;
-        this.nom = "Pirata " + numeroPirata;
+        this.vida = random.nextInt(VIDA_MIN, VIDA_MAX) + 1; // Le asignamos una vida aleatoria al pirata
+        this.vidaMax = this.vida; // guardamos esta como vida maxima para crear un contador "el pirata tiene 6
+                                  // vidas de 10"
+        this.nom = "Pirata " + numeroPirata; // declaramos el nombre del pirata según su numero
         numeroPirata++;
-        // el nombr del pirata es su ¨numero¨
-
         // creamos un array de Insultos
         this.arrayInsultos = new Insult[NUM_INSULTS];
 
-        for (int i = 0; i < arrayInsultos.length; i++) {
-            boolean salir = false;
-            do {
+        int x, y, z; // creamos 3 int aleatorios para obtener 3 insultos aleatorios del array pasado
+        x = random.nextInt(arrIns.length);
+        do {
+            y = random.nextInt(arrIns.length);
+        } while (y == x);
+        do {
+            z = random.nextInt(arrIns.length);
+        } while ((z == x) || (z == x));
 
-                int aux = random.nextInt(arrIns[0].length);
-                if (!Main.estaUsadoElInsulto(aux)) {
+        // insertamos los insultos en la lista
+        arrayInsultos[0] = new Insult(arrIns[x].getTextoInsulto(), arrIns[x].getTextoRespuesta());
+        arrayInsultos[1] = new Insult(arrIns[x].getTextoInsulto(), arrIns[y].getTextoRespuesta());
+        arrayInsultos[2] = new Insult(arrIns[x].getTextoInsulto(), arrIns[z].getTextoRespuesta());
 
-                    Main.usarInsulto(aux);
-
-                    salir = true;
-
-                    arrayInsultos[i] = new Insult(aux);
-
-                }
-            } while (!salir);
-
-            // indicamos que el insulto está usado
-        }
+        this.insultActual = arrayInsultos[random.nextInt(NUM_INSULTS)];
     }
 
-    public Pirata(int x, int y, int z) {
-
-        Random random = new Random();
-        this.insultActual = new Insult(random.nextInt(3));
-        // no lo uso en esta version
-        this.vida = random.nextInt(VIDA_MIN, VIDA_MAX) + 1;
-        numeroPirata++;
-        this.nom = "Pirata " + numeroPirata;
-        this.arrayInsultos = new Insult[NUM_INSULTS];
-
-        arrayInsultos[0] = new Insult(x);
-        arrayInsultos[1] = new Insult(y);
-        arrayInsultos[2] = new Insult(z);
-    }
-
-    public void insultar() {
+    public void insultar() { // devuelve el string del insulto actual
         System.out.println(insultActual.getTextoInsulto());
     }
 
     public boolean replica(String s) {
-        // comparamos le string pasado con el insulto actual
-        boolean coincide = insultActual.getTextoInsulto().equals(s);
-        Random random = new Random();
-        // hacemos que el insulto actual sea random
-        this.insultActual = new Insult(random.nextInt(3));
-
+        // comparamos el string pasado conla respuesta del insulto actual
+        boolean coincide = insultActual.getTextoRespuesta().equals(s);
+        Random random = new Random(); // hacemos que el insulto actual sea uno
+                                      // aleatorio de los 3 que contiene
+        this.insultActual = arrayInsultos[random.nextInt(NUM_INSULTS)];
         return coincide;
     }
 
@@ -108,6 +82,10 @@ public class Pirata {
     }
 
     public Insult getInsulto(int x) {
+        if (x >= NUM_INSULTS) {
+            System.out.println("X fuera de rango");
+            return this.arrayInsultos[0];
+        }
         return this.arrayInsultos[x];
 
     }

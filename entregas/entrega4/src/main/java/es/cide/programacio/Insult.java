@@ -1,30 +1,28 @@
 package es.cide.programacio;
 
-import java.util.Random;
-
 public class Insult {
 
-    private int pos;
+    // private int pos;
     private String textoInsult;
+    private String textoRespuesta;
 
     public Insult() {
-        this.pos = 0;
+        this.textoRespuesta = " ";
         this.textoInsult = " ";
     }
 
     // construcotr para un insulto concreto (posicion en el array)
-    public Insult(String s, int x) {
-        this.pos = x;
+    public Insult(String s, String x) {
         this.textoInsult = s;
-    }
-
-    public int getInsulto() {
-        // devuelve la posición
-        return this.pos;
+        this.textoRespuesta = x;
     }
 
     public String getTextoInsulto() {
         return this.textoInsult;
+    }
+
+    public String getTextoRespuesta() {
+        return this.textoRespuesta;
     }
 
 }
