@@ -25,29 +25,35 @@ public class Main {
         heroi = new Heroi(heroiNom, arrayInsultos);
 
         UI.escribirLento("Nuestro héroe " + heroi.getNom() + " se encuentra con " + illa.getNumPiratas() + " piratas",
-                15);
+                40);
+
+        UI.limpiarConsola();
 
         while (!acabarJuego) {
             // Mostramos una UI con las vidas del jugador y pirata
             UI.sprites(heroi.getVida(), 10, illa.vullPirataActual().getNom(), illa.vullPirataActual().getVida(),
                     illa.vullPirataActual().getVidaMax(), heroi.getNom(), illa.getNumPiratas());
-
             illa.vullPirataActual().insultar(); // mostramos el insulto
             String respuestaElegida = heroi.defensar(); // mostramos las posibles respuestas, eelgimos una y devolvemos
                                                         // el String de este
-
             boolean respuesta = illa.vullPirataActual().replica(respuestaElegida); // llamamos la funcion replica del
                                                                                    // pirata actual
             UI.limpiarConsola();
 
             if (respuesta) {
-                if (!illa.vullPirataActual().vida())
-                    illa.nextPirata();
-            } else if (!heroi.vida())
+                if (!illa.vullPirataActual().vida()) {
+
+                    if (!illa.nextPirata())
+
+                        acabarJuego = true;
+                    UI.finDelJuego(true);
+                }
+            } else if (!heroi.vida()) {
                 acabarJuego = true;
+                UI.finDelJuego(false);
+            }
         }
 
-        UI.finDelJuego();
         sc.close();
     }
 

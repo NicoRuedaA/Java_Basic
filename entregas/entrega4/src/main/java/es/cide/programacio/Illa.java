@@ -16,14 +16,25 @@ public class Illa {
 
     // Constructor
     public Illa(Insult[] arrayInsultos) {
-        mida = random.nextInt(5); // creamos una array del tamaño minimo 3, maximo 7 (random + 3)
+        mida = random.nextInt(5); // creamos una array del tamaño minimo 3, maximo 7
+        // (random + 3)
         this.arrayPiratas = new Pirata[mida + 3];
-        nomIlla = nombresIsla[mida]; // Le asignamos un nombre aleatorio a la isla
+        nomIlla = nombresIsla[0]; // Le asignamos un nombre aleatorio a la isla
         this.pirataActual = 0;
 
         for (int i = 0; i < arrayPiratas.length; i++) {
             arrayPiratas[i] = new Pirata(arrayInsultos);
         }
+    }
+
+    public boolean nextPirata() {
+        boolean fin = false;
+        this.pirataActual++;
+        if (pirataActual >= arrayPiratas.length) {
+            UI.escribirLento("Llegaste al final", 15);
+            fin = true;
+        }
+        return fin;
     }
 
     public Pirata vullUnPirata(int index) {
@@ -50,18 +61,8 @@ public class Illa {
         return this.arrayPiratas.length;
     }
 
-    public boolean nextPirata() {
-        System.out.println("Siguiente pirata");
-        boolean fin = false;
-        this.pirataActual++;
-        if (pirataActual >= arrayPiratas.length) {
-            System.out.println("Llegaste al final");
-            fin = true;
-        }
-        return fin;
-    }
-
     public Insult getInsultoActual() {
+        System.out.println("Pirata actual: " + pirataActual);
         return vullPirataActual().getInsultoActual();
     }
 }

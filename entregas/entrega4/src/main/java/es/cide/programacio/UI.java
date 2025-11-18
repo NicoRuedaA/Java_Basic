@@ -17,21 +17,32 @@ public class UI {
     // Estilos extra
     public static final String NEGRITA = "\u001B[1m";
     public static final String FONDO_ROJO = "\u001B[41m";
+    public static final String FONDO_VERDE = "\u001B[42m";
 
     // **************************************************************************************************************************/
     // Info unicamente visual, no contiene lógica de la práctica
 
     public static void escribirLento(String texto, int delay) {
         for (char c : texto.toCharArray()) {
-            System.out.print(CYAN);
             System.out.print(c);
             try {
                 Thread.sleep(delay);
             } catch (InterruptedException e) {
             }
         }
-        System.out.print(RESET);
-        System.out.println();
+    }
+
+    public static void escribirRapido(String texto, int nanos, long milis) {
+        // 1. Imprimimos todo el texto de golpe
+        System.out.println(texto);
+
+        // 2. Aplicamos la pausa después de que todo el texto ha sido mostrado
+        try {
+            Thread.sleep(1);
+        } catch (InterruptedException e) {
+            // En un juego, generalmente ignoramos esta excepción para no detener el flujo.
+            // También podrías agregar e.printStackTrace(); para depuración.
+        }
     }
 
     private static String crearBarraDeVida(int actual, int maximo, int longitud) {
@@ -89,7 +100,7 @@ public class UI {
 
         System.out.println(ROJO); // Color encendido
         for (String linea : panel) {
-            System.out.println(linea);
+            escribirLento(linea, 15);
         }
         System.out.println(RESET); // Color apagado
         System.out.println(); // El 'println' vacío que tenías
@@ -97,7 +108,7 @@ public class UI {
 
     public static void titulo(Illa i) {
         System.out.print(CYAN);
-        System.out.println("\r\n" + //
+        escribirLento(("\r\n" + //
                 "████████╗██╗░░██╗███████╗░░██████╗███████╗░█████╗░██████╗░███████╗████████╗░░█████╗░███████╗\r\n" + //
                 "╚══██╔══╝██║░░██║██╔════╝░██╔════╝██╔════╝██╔══██╗██╔══██╗██╔════╝╚══██╔══╝░██╔══██╗██╔════╝\r\n" + //
                 "░░░██║░░░███████║█████╗░░░╚█████╗░█████╗░░██║░░╚═╝██████╔╝█████╗░░░░░██║░░░░██║░░██║█████╗░░\r\n" + //
@@ -115,23 +126,32 @@ public class UI {
                 + //
                 "██║░╚═╝░██║╚█████╔╝██║░╚███║██║░╚██╗███████╗░░░██║░░░░██║██████╔╝███████╗██║░░██║██║░╚███║██████╔╝\r\n"
                 + //
-                "╚═╝░░░░░╚═╝░╚════╝░╚═╝░░╚══╝╚═╝░░╚═╝╚══════╝░░░╚═╝░░░░╚═╝╚═════╝░╚══════╝╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░");
+                "╚═╝░░░░░╚═╝░╚════╝░╚═╝░░╚══╝╚═╝░░╚═╝╚══════╝░░░╚═╝░░░░╚═╝╚═════╝░╚══════╝╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░"),
+                1);
         System.out.println();
         escribirLento("Bienvenido a " + i.getNom() + ", introduce tu nombre: ", 15);
         System.out.print(RESET);
     }
 
-    public static void finDelJuego() {
+    public static void finDelJuego(boolean victoria) {
         limpiarConsola();
-        System.out.println(FONDO_ROJO + NEGRITA + BLANCO);
+        if (victoria)
+            System.out.println(FONDO_VERDE + NEGRITA + BLANCO);
+        else
+            System.out.println(FONDO_ROJO + NEGRITA + BLANCO);
+
         System.out.println("                                        ");
-        System.out.println("           ☠  FIN DEL JUEGO  ☠          ");
+        if (victoria)
+            escribirLento("                VICTORIA                ", 10);
+        else
+            escribirLento("              FIN DEL JUEGO             ", 10);
+
         System.out.println("                                        ");
         System.out.println(RESET);
     }
 
     public static void limpiarConsola() {
-        for (int k = 0; k < 25; k++)
+        for (int k = 0; k < 60; k++)
             System.out.println();
     }
 
@@ -187,6 +207,7 @@ public class UI {
                 "                  ▓▓████████████            █████████████" + RESET,
 
         };
+        System.out.println();
 
         // --- LOGICA DE IMPRESION MEJORADA ---
 
@@ -230,7 +251,10 @@ public class UI {
 
             // Imprimimos el sprite forzando VERDE al inicio para asegurar continuidad
             // y RESET al final para no manchar el panel
-            System.out.print(VERDE + lineaSprite + RESET);
+            System.out.print(VERDE);
+            escribirLento(lineaSprite, 1);
+            // escribirRapido(lineaSprite, 1, 100);
+            System.out.print(RESET);
 
             // Rellenamos con espacios hasta llegar a la columna del panel
             int espaciosFaltantes = anchoMaximoSprite - longitudVisible + margenExtra;
@@ -242,7 +266,10 @@ public class UI {
             // -- PARTE DERECHA --
             if (i >= paddingTop && i < paddingTop + altoPanel) {
                 // Imprimimos el panel con su color (AMARILLO)
-                System.out.print(AMARILLO + panel[i - paddingTop] + RESET);
+                System.out.print(AMARILLO);
+                escribirLento(panel[i - paddingTop], 1);
+                // escribirRapido(lineaSprite, 5000, 15);
+                System.out.print(RESET);
             }
 
             // Salto de línea final

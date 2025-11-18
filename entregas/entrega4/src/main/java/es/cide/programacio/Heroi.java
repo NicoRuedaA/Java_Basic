@@ -33,7 +33,7 @@ public class Heroi {
     public String defensar() {
         Scanner scHeroi = new Scanner(System.in); // no hace falta cerrarlo. Basta con cerrar Scanner al final en el
                                                   // main. Si no da error
-        System.out.println("¿Qué le contestas? (1-10)");
+        UI.escribirLento("¿Qué le contestas? (1-10)", 15);
         mostrarRespuestas();
         int respuesta = getInputValidado(scHeroi);
 
@@ -43,8 +43,10 @@ public class Heroi {
     private void mostrarRespuestas() {
         // mostramos cada respuesta del array de Insults
         // objeto insults contiene un String con su respuesta
+
         for (int i = 0; i < arrayRespuestas.length; i++) {
-            System.out.println(arrayRespuestas[i].getTextoRespuesta());
+            UI.escribirLento((i + 1) + " " + arrayRespuestas[i].getTextoRespuesta(), 5);
+            System.out.println();
         }
     }
 
@@ -62,11 +64,11 @@ public class Heroi {
 
         while (res < 1 || res > 10) {
             System.out.println();
-            System.out.print("Introdueix la teva resposta 1-10: ");
+            UI.escribirLento(("Introdueix la teva resposta 1-10: "), 15);
             try {
                 res = scan.nextInt();
                 if (res < 1 || res > 10)
-                    System.out.println("Fuera de rango");
+                    UI.escribirLento(("Fuera de rango:"), 15);
             } catch (Exception e) {
                 scan.next(); // limpiamos buffer
             }

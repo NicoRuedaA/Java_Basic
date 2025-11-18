@@ -37,23 +37,29 @@ public class Pirata {
 
         // insertamos los insultos en la lista
         arrayInsultos[0] = new Insult(arrIns[x].getTextoInsulto(), arrIns[x].getTextoRespuesta());
-        arrayInsultos[1] = new Insult(arrIns[x].getTextoInsulto(), arrIns[y].getTextoRespuesta());
-        arrayInsultos[2] = new Insult(arrIns[x].getTextoInsulto(), arrIns[z].getTextoRespuesta());
+        arrayInsultos[1] = new Insult(arrIns[y].getTextoInsulto(), arrIns[y].getTextoRespuesta());
+        arrayInsultos[2] = new Insult(arrIns[z].getTextoInsulto(), arrIns[z].getTextoRespuesta());
 
         this.insultActual = arrayInsultos[random.nextInt(NUM_INSULTS)];
     }
 
     public void insultar() { // devuelve el string del insulto actual
-        System.out.println(insultActual.getTextoInsulto());
+        UI.escribirLento((this.nom + ": " + insultActual.getTextoInsulto()), 15);
+        System.out.println();
     }
 
     public boolean replica(String s) {
-        System.out.println("Respuesta correcta : " + insultActual.getTextoRespuesta());
+
         // comparamos el string pasado conla respuesta del insulto actual
         boolean coincide = insultActual.getTextoRespuesta().equals(s);
         Random random = new Random(); // hacemos que el insulto actual sea uno
                                       // aleatorio de los 3 que contiene
         this.insultActual = arrayInsultos[random.nextInt(NUM_INSULTS)];
+        if (coincide)
+            UI.escribirLento("RESPUESTA CORRECTA", 50);
+        else
+            UI.escribirLento("RESPUESTA INCORRECTA", 50);
+        System.out.println();
         return coincide;
     }
 
@@ -84,7 +90,7 @@ public class Pirata {
 
     public Insult getInsulto(int x) {
         if (x >= NUM_INSULTS) {
-            System.out.println("X fuera de rango");
+            UI.escribirLento("X fuera de rango", 10);
             return this.arrayInsultos[0];
         }
         return this.arrayInsultos[x];
