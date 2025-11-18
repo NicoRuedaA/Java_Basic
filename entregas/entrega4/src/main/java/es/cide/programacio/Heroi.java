@@ -35,15 +35,7 @@ public class Heroi {
                                                   // main. Si no da error
         System.out.println("¿Qué le contestas? (1-10)");
         mostrarRespuestas();
-        int respuesta = scHeroi.nextInt();
-        System.out.println();
-
-        while (respuesta < 1 || respuesta > 10) {
-            System.out.println();
-            System.out.println("Introdueix la teva resposta 1-10");
-            respuesta = scHeroi.nextInt();
-            System.out.println();
-        }
+        int respuesta = getInputValidado(scHeroi);
 
         return arrayRespuestas[respuesta].getTextoRespuesta();
     }
@@ -62,5 +54,26 @@ public class Heroi {
 
     public int getVida() {
         return this.vida;
+    }
+
+    private int getInputValidado(Scanner scan) {
+        int res = -1;
+        System.out.println();
+
+        while (res < 1 || res > 10) {
+            System.out.println();
+            System.out.print("Introdueix la teva resposta 1-10: ");
+            try {
+                res = scan.nextInt();
+                if (res < 1 || res > 10)
+                    System.out.println("Fuera de rango");
+            } catch (Exception e) {
+                scan.next(); // limpiamos buffer
+            }
+
+            System.out.println();
+        }
+
+        return res - 1;
     }
 }

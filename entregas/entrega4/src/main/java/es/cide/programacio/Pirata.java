@@ -48,6 +48,7 @@ public class Pirata {
     }
 
     public boolean replica(String s) {
+        System.out.println("Respuesta correcta : " + insultActual.getTextoRespuesta());
         // comparamos el string pasado conla respuesta del insulto actual
         boolean coincide = insultActual.getTextoRespuesta().equals(s);
         Random random = new Random(); // hacemos que el insulto actual sea uno
