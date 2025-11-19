@@ -6,8 +6,9 @@ public class Illa {
 
     String[] nombresIsla = { "La Española", "Isla Antigua", "Icacos", "Booby Cay", "Waterlemon Cay" };
 
-    // private static final int MIDA_MAX = 7;
-    // private static final int MIDA_MIN = 3;
+    // vida maxima 7
+    private static final int MIDA_VARIACION = 5;
+    private static final int MIDA_MIN = 3;
 
     private int mida, pirataActual;
     private Random random = new Random();
@@ -16,10 +17,10 @@ public class Illa {
 
     // Constructor
     public Illa(Insult[] arrayInsultos) {
-        mida = random.nextInt(5); // creamos una array del tamaño minimo 3, maximo 7
+        mida = random.nextInt(MIDA_VARIACION); // creamos una array del tamaño minimo 3, maximo 7
         // (random + 3)
-        this.arrayPiratas = new Pirata[mida + 3];
-        nomIlla = nombresIsla[0]; // Le asignamos un nombre aleatorio a la isla
+        this.arrayPiratas = new Pirata[mida + MIDA_MIN];
+        nomIlla = nombresIsla[mida]; // Le asignamos un nombre aleatorio a la isla
         this.pirataActual = 0;
 
         for (int i = 0; i < arrayPiratas.length; i++) {
@@ -28,13 +29,8 @@ public class Illa {
     }
 
     public boolean nextPirata() {
-        boolean fin = false;
-        this.pirataActual++;
-        if (pirataActual >= arrayPiratas.length) {
-            UI.escribirLento("Llegaste al final", 15);
-            fin = true;
-        }
-        return fin;
+
+        return pirataActual >= arrayPiratas.length;
     }
 
     public Pirata vullUnPirata(int index) {

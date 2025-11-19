@@ -23,17 +23,17 @@ public class Heroi {
     }
 
     public boolean vida() {
-        boolean vivo = false;
+
         this.vida--;
-        if (this.vida > 0)
-            vivo = true;
-        return vivo;
+        return vida > 0;
     }
 
     public String defensar() {
         Scanner scHeroi = new Scanner(System.in); // no hace falta cerrarlo. Basta con cerrar Scanner al final en el
-                                                  // main. Si no da error
+                                                  // main. Lo ideal sería pasar el scanner del main tal que defensar(sc)
+
         UI.escribirLento("¿Qué le contestas? (1-10)", 15);
+        System.out.println();
         mostrarRespuestas();
         int respuesta = getInputValidado(scHeroi);
 
@@ -62,12 +62,12 @@ public class Heroi {
         int res = -1;
         System.out.println();
 
-        while (res < 1 || res > 10) {
+        while (res < 1 || res > arrayRespuestas.length) {
             System.out.println();
             UI.escribirLento(("Introdueix la teva resposta 1-10: "), 15);
             try {
                 res = scan.nextInt();
-                if (res < 1 || res > 10)
+                if (res < 1 || res > arrayRespuestas.length)
                     UI.escribirLento(("Fuera de rango:"), 15);
             } catch (Exception e) {
                 scan.next(); // limpiamos buffer

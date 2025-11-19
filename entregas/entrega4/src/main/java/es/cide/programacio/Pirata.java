@@ -33,7 +33,7 @@ public class Pirata {
         } while (y == x);
         do {
             z = random.nextInt(arrIns.length);
-        } while ((z == x) || (z == x));
+        } while ((z == x) || (z == y));
 
         // insertamos los insultos en la lista
         arrayInsultos[0] = new Insult(arrIns[x].getTextoInsulto(), arrIns[x].getTextoRespuesta());
@@ -43,9 +43,8 @@ public class Pirata {
         this.insultActual = arrayInsultos[random.nextInt(NUM_INSULTS)];
     }
 
-    public void insultar() { // devuelve el string del insulto actual
-        UI.escribirLento((this.nom + ": " + insultActual.getTextoInsulto()), 15);
-        System.out.println();
+    public String insultar() {
+        return this.insultActual.getTextoInsulto();
     }
 
     public boolean replica(String s) {
@@ -64,11 +63,9 @@ public class Pirata {
     }
 
     public boolean vida() {
-        boolean vivo = false;
+
         this.vida--;
-        if (vida > 0)
-            return vivo = true;
-        return vivo;
+        return vida > 0;
     }
 
     // GETS Y SETS

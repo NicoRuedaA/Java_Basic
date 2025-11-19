@@ -3,22 +3,23 @@ package es.cide.programacio;
 public class Insult {
 
     // private int pos;
-    private String textoInsult;
-    private String textoRespuesta;
+    // final porque no varian una vez creadas
+    private final String textoInsulto;
+    private final String textoRespuesta;
 
     public Insult() {
-        this.textoRespuesta = " ";
-        this.textoInsult = " ";
+        this.textoRespuesta = "";
+        this.textoInsulto = "";
     }
 
-    // construcotr para un insulto concreto (posicion en el array)
-    public Insult(String s, String x) {
-        this.textoInsult = s;
-        this.textoRespuesta = x;
+    // constructor para un insulto concreto (posicion en el array)
+    public Insult(String textoInsulto, String textoRespuesta) {
+        this.textoInsulto = textoInsulto;
+        this.textoRespuesta = textoRespuesta;
     }
 
     public String getTextoInsulto() {
-        return this.textoInsult;
+        return this.textoInsulto;
     }
 
     public String getTextoRespuesta() {

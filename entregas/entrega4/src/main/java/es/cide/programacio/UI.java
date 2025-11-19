@@ -12,12 +12,108 @@ public class UI {
     private static final String MORADO = "\u001B[35m";
     private static final String CYAN = "\u001B[36m";
     private static final String BLANCO = "\u001B[37m";
-    private static final String MARROM = "\u001B[33m";
 
     // Estilos extra
     public static final String NEGRITA = "\u001B[1m";
     public static final String FONDO_ROJO = "\u001B[41m";
     public static final String FONDO_VERDE = "\u001B[42m";
+    static String[] boceto = new String[] {
+
+            CYAN,
+            "                          ████████████           ",
+            "                        ████████████████         ",
+            "                      ████████████████████       ",
+            "                    ████████████░░░░████████     ",
+            "                    ██████████░░░░██████         ",
+            "                    ██████████░░░░  ░░░░         ",
+            "                    ██████░░░░░░░░░░░░░░░░       ",
+            "                    ██████░░░░░░░░░░████         ",
+            "                  ██████████░░░░░░██████         ",
+            "                ████████████████░░██░░░░         ",
+            "                ████▒▒▒▒▒▒▒▒░░░░████████         ",
+            "                ████▓▓▓▓████▒▒░░░░▒▒             ",
+            "                ▓▓▓▓▓▓▓▓██████░░░░████           ",
+            "              ▓▓▓▓▓▓▓▓▓▓▓▓████▒▒░░░░████         ",
+            "            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓██████▒▒░░▓▓██         ",
+            "          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▒▒░░▓▓██         ",
+            "        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▒▒░░▓▓██         ",
+            "        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▒▒▓▓▓▓██▓▓       ",
+            "        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▓▓▓▓▓▓██▓▓       ",
+            "      ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▓▓▒▒▓▓██▓▓       ",
+            "      ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▒▒▒▒▓▓██▓▓       ",
+            "      ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██████████▓▓       ",
+            "      ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓████    ██▓▓       ",
+            "      ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓████  ████▓▓       ",
+            "        ▓▓▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓████    ██▓▓░░     ",
+            "        ▒▒██████▓▓▓▓▓▓▓▓▓▓▓▓▓▓██████████▓▓░░     ",
+            "        ██░░░░░░▓▓▓▓▓▓▓▓▓▓▓▓▓▓██░░░░░░██▓▓▓▓░░   ",
+            "        ░░░░░░░░░░▓▓▓▓▓▓▓▓▓▓▓▓██░░░░░░██▓▓▓▓░░   ",
+            "        ░░░░░░░░░░▓▓▓▓▓▓▓▓▓▓▓▓██░░░░░░██▓▓▓▓     ",
+            "        ░░  ░░▓▓░░▓▓▓▓▓▓▓▓▓▓▓▓██░░░░░░██▓▓▓▓     ",
+            "            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██░░░░░░██▓▓▓▓     ",
+            "            ▓▓▓▓▓▓▓▓▓▓▓▓░░▓▓▓▓██░░░░░░██▓▓▓▓     ",
+            "            ▒▒▒▒▓▓░░▓▓▓▓░░▓▓▓▓██░░░░░░██▓▓▒▒     ",
+            "            ████▒▒░░▒▒▒▒░░▓▓▓▓██░░░░░░░░▒▒██     ",
+            "              ░░██░░████░░▒▒▒▒▒▒░░░░░░░░██       ",
+            "              ░░░░░░░░░░░░██████░░░░░░░░         ",
+            "              ▓▓▓▓▓▓▓▓▓▓      ▓▓▓▓▓▓▓▓           ",
+            "            ██████████████    ████████████       ",
+            "            ██████████████    ██████████▓▓       ",
+            "            ██████████████    ████████████       ",
+            "              ▓▓▓▓▓▓▓▓▓▓▓▓    ▓▓▓▓▓▓▓▓▓▓         ",
+            "                ▓▓▓▓▓▓▓▓          ▓▓▓▓▓▓         ",
+            "                ██████▓▓          ██▓▓██████     ",
+            "              ██████████▓▓        ▓▓▓▓████████▓▓ ",
+            "            ██████████▓▓          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ",
+            "            ▓▓▓▓▓▓▓▓▓▓▓▓                         ", RESET
+    };
+
+    static String[] left = new String[] {
+            "                  ██▓▓▓▓▓▓██                     ",
+            "                ██████▓▓▓▓████████               ",
+            "              ████▓▓▓▓▓▓███████▓▓███             ",
+            "              ███████████░░░░░░███████           ",
+            "              ▓▓█████████▓▓███▓▓██▓▓             ",
+            "            ██████▓▓  ░░░░░░  ▓▓██▓▓   ██        ",
+            "            ██  ██░░░░░░░░░░░░▓▓██▓▓ ███         ",
+            "          ██      ░░░░▓▓██▓▓░░▓▓                 ",
+            "                  ██▓▓██████▓▓▓▓▓▓               ",
+            "                  ██▓▓░░░░░░████▓▓▓▓             ",
+            "                ████░░▓▓▓▓▓▓░░██████             ",
+            "          ▓▓▓▓▓▓████░░░░░░░░▓▓████▓▓▓▓▓▓▓▓       ",
+            "        ▓▓▓▓▓▓▓▓████▓▓░░░░░░▓▓████▓▓▓▓▓▓▓▓▓▓▓▓   ",
+            "      ▓▓▓▓▓▓▓▓▓▓████▓▓▓▓░░▓▓▓▓████▓▓▓▓▓▓▓▓▓▓▓▓   ",
+            "    ▓▓▓▓▓▓▓▓▓▓▓▓████▓▓▓▓░░▓▓▓▓████▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ",
+            "    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓████▓▓▓▓▓▓▓▓██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ",
+            "  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▓▓██▓▓▓▓▓▓██▓▓▓▓▓▓▓▓  ▓▓▓▓▓▓▓",
+            "  ▓▓▓▓▓▓▓▓  ▓▓▓▓▓▓██▓▓▓▓██▓▓▓▓▓▓██▓▓▓▓▓▓  ▓▓▓▓▓▓▓",
+            "  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▓▓▓▓▓▓██▓▓▓▓██▓▓▓▓▓▓  ▓▓▓▓▓▓▓",
+            "  ▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓██▓▓▓▓▓▓▓▓██████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓",
+            "  ████▒▒▒▒▓▓▓▓▓▓▓▓██▓▓▓▓▓▓▓▓██████▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒",
+            "    ██████▓▓▓▓▓▓▓▓██▓▓████████▓▓██▓▓▓▓▓▓▓▓▒▒▒▒███",
+            "    ░░░░░░▓▓▓▓▓▓▓▓██  ██    ██  ██▓▓▓▓▓▓▓▓██████ ",
+            "    ░░░░░░░░▓▓▓▓▓▓██  ████  ██  ██▓▓▓▓▓▓▓▓░░░░░░ ",
+            "      ░░░░▓▓▓▓  ▓▓██  ██    ██  ██▓▓▓▓▓▓░░░░░░░░ ",
+            "        ░░▓▓▓▓▓▓▓▓██░░████████░░██▓▓▓▓▓▓▓▓░░░░░░ ",
+            "          ▓▓▓▓▓▓▓▓██░░░░░░░░░░░░██▓▓▓▓▓▓▓▓░░░░   ",
+            "          ▓▓▓▓▓▓▓▓██░░░░░░░░░░░░████▓▓▓▓▓▓▓▓     ",
+            "          ▓▓▓▓░░▓▓██░░░░░░░░░░░░██▓▓▓▓▓▓▓▓       ",
+            "          ▓▓▓▓░░▓▓██░░░░░░░░░░░░██▓▓▓▓▓▓▓▓       ",
+            "          ▓▓▓▓░░▓▓██░░░░░░░░░░░░██▓▓▓▓░░▓▓       ",
+            "          ▓▓▓▓░░▓▓██░░░░░░  ░░░░░░██▓▓░░██       ",
+            "          ████░░██░░░░░░░░  ░░░░░░░░██░░██       ",
+            "          ████░░██░░░░░░░░  ░░░░░░░░░░░░░░       ",
+            "              ░░░░░░░░░░░░    ░░░░░░░░░░░░       ",
+            "              ▓▓▓▓▓▓▓▓▓▓        ▓▓▓▓▓▓▓▓▓▓▓▓     ",
+            "              ▓▓▓▓▓▓▓▓▓▓▓▓      ▓▓▓▓▓▓▓▓▓▓▓▓     ",
+            "            ██████████▓▓▓▓    ████████████████   ",
+            "            ██████████▓▓▓▓    ████████████████   ",
+            "            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓    ████████████████   ",
+            "                ▓▓▓▓▓▓          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓   ",
+            "                ▓▓████▓▓            ▓▓████▓▓     ",
+            "            ▓▓▓▓████████            ██████████▓▓▓",
+            "          ▓▓████████████            █████████████"
+    };
 
     // **************************************************************************************************************************/
     // Info unicamente visual, no contiene lógica de la práctica
@@ -29,19 +125,6 @@ public class UI {
                 Thread.sleep(delay);
             } catch (InterruptedException e) {
             }
-        }
-    }
-
-    public static void escribirRapido(String texto, int nanos, long milis) {
-        // 1. Imprimimos todo el texto de golpe
-        System.out.println(texto);
-
-        // 2. Aplicamos la pausa después de que todo el texto ha sido mostrado
-        try {
-            Thread.sleep(1);
-        } catch (InterruptedException e) {
-            // En un juego, generalmente ignoramos esta excepción para no detener el flujo.
-            // También podrías agregar e.printStackTrace(); para depuración.
         }
     }
 
@@ -89,21 +172,6 @@ public class UI {
         panel[10] = "╚══════════════════════════════════════════════╝"; // 48 chars
 
         return panel;
-    }
-
-    private static void mostrarPanel(int vidaJugador, int maxVidaJugador, String nombrePirata,
-            int vidaPirata, int maxVidaPirata, String nombreJugador, int numPiratas) {
-
-        // (Asumo que ROJO y RESET son variables de color definidas en tu clase)
-        String[] panel = generarPanelStringArray(vidaJugador, maxVidaJugador, nombrePirata, vidaPirata, maxVidaPirata,
-                nombreJugador, numPiratas);
-
-        System.out.println(ROJO); // Color encendido
-        for (String linea : panel) {
-            escribirLento(linea, 15);
-        }
-        System.out.println(RESET); // Color apagado
-        System.out.println(); // El 'println' vacío que tenías
     }
 
     public static void titulo(Illa i) {
@@ -155,125 +223,115 @@ public class UI {
             System.out.println();
     }
 
+    // ... (El resto de la clase UI se mantiene igual: imports, constantes,
+    // escribirLento, etc.) ...
+
     public static void sprites(int vidaJugador, int maxVidaJugador, String nombrePirata,
-            int vidaPirata, int maxVidaPirata, String nombreJugador, int numPiratas) {
+            int vidaPirata, int maxVidaPirata, String nombreJugador, int numPiratas, boolean mostrarOriginal) {
 
-        // Tu array original intacto
-        String[] left = new String[] {
-                VERDE +
-                        "                          ██▓▓▓▓▓▓██                     ",
-                "                        ██████▓▓▓▓████████                 ",
-                "                      ████▓▓▓▓▓▓███████▓▓███               ",
-                "                      ███████████░░░░░░███████             ",
-                "                      ▓▓█████████▓▓███▓▓██▓▓               ",
-                "                    ██████▓▓  ░░░░░░  ▓▓██▓▓   ██         ",
-                "                    ██  ██░░░░░░░░░░░░▓▓██▓▓ ███           ",
-                "                  ██      ░░░░▓▓██▓▓░░▓▓                   ",
-                "                          ██▓▓██████▓▓▓▓▓▓               ",
-                "                          ██▓▓░░░░░░████▓▓▓▓             ",
-                "                        ████░░▓▓▓▓▓▓░░██████             ",
-                "                  ▓▓▓▓▓▓████░░░░░░░░▓▓████▓▓▓▓▓▓▓▓       ",
-                "                ▓▓▓▓▓▓▓▓████▓▓░░░░░░▓▓████▓▓▓▓▓▓▓▓▓▓▓▓   ",
-                "              ▓▓▓▓▓▓▓▓▓▓████▓▓▓▓░░▓▓▓▓████▓▓▓▓▓▓▓▓▓▓▓▓   ",
-                "            ▓▓▓▓▓▓▓▓▓▓▓▓████▓▓▓▓░░▓▓▓▓████▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ",
-                "            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓████▓▓▓▓▓▓▓▓██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ",
-                "          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▓▓██▓▓▓▓▓▓██▓▓▓▓▓▓▓▓  ▓▓▓▓▓▓▓",
-                "          ▓▓▓▓▓▓▓▓  ▓▓▓▓▓▓██▓▓▓▓██▓▓▓▓▓▓██▓▓▓▓▓▓  ▓▓▓▓▓▓▓",
-                "          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▓▓▓▓▓▓██▓▓▓▓██▓▓▓▓▓▓  ▓▓▓▓▓▓▓",
-                "          ▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓██▓▓▓▓▓▓▓▓██████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓",
-                "          ████▒▒▒▒▓▓▓▓▓▓▓▓██▓▓▓▓▓▓▓▓██████▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒",
-                "            ██████▓▓▓▓▓▓▓▓██▓▓████████▓▓██▓▓▓▓▓▓▓▓▒▒▒▒███",
-                "            ░░░░░░▓▓▓▓▓▓▓▓██  ██    ██  ██▓▓▓▓▓▓▓▓██████ ",
-                "            ░░░░░░░░▓▓▓▓▓▓██  ████  ██  ██▓▓▓▓▓▓▓▓░░░░░░ ",
-                "              ░░░░▓▓▓▓  ▓▓██  ██    ██  ██▓▓▓▓▓▓░░░░░░░░ ",
-                "                ░░▓▓▓▓▓▓▓▓██░░████████░░██▓▓▓▓▓▓▓▓░░░░░░ ",
-                "                  ▓▓▓▓▓▓▓▓██░░░░░░░░░░░░██▓▓▓▓▓▓▓▓░░░░   ",
-                "                  ▓▓▓▓▓▓▓▓██░░░░░░░░░░░░████▓▓▓▓▓▓▓▓     ",
-                "                  ▓▓▓▓░░▓▓██░░░░░░░░░░░░██▓▓▓▓▓▓▓▓       ",
-                "                  ▓▓▓▓░░▓▓██░░░░░░░░░░░░██▓▓▓▓▓▓▓▓       ",
-                "                  ▓▓▓▓░░▓▓██░░░░░░░░░░░░██▓▓▓▓░░▓▓       ",
-                "                  ▓▓▓▓░░▓▓██░░░░░░  ░░░░░░██▓▓░░██       ",
-                "                  ████░░██░░░░░░░░  ░░░░░░░░██░░██       ",
-                "                  ████░░██░░░░░░░░  ░░░░░░░░░░░░░░       ",
-                "                      ░░░░░░░░░░░░    ░░░░░░░░░░░░       ",
-                "                      ▓▓▓▓▓▓▓▓▓▓        ▓▓▓▓▓▓▓▓▓▓▓▓     ",
-                "                      ▓▓▓▓▓▓▓▓▓▓▓▓      ▓▓▓▓▓▓▓▓▓▓▓▓     ",
-                "                    ██████████▓▓▓▓    ████████████████   ",
-                "                    ██████████▓▓▓▓    ████████████████   ",
-                "                    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓    ████████████████   ",
-                "                        ▓▓▓▓▓▓          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓   ",
-                "                        ▓▓████▓▓            ▓▓████▓▓     ",
-                "                    ▓▓▓▓████████            ██████████▓▓▓",
-                "                  ▓▓████████████            █████████████" + RESET,
+        // 1. Definición de los Sprites
 
-        };
         System.out.println();
 
-        // --- LOGICA DE IMPRESION MEJORADA ---
+        // --- LÓGICA DE SELECCIÓN ---
+        // Aquí decidimos qué array y qué color usar
+        String[] spriteSeleccionado;
+        String colorSprite;
 
+        if (mostrarOriginal) {
+            spriteSeleccionado = left;
+            colorSprite = VERDE;
+        } else {
+            spriteSeleccionado = boceto;
+            colorSprite = BLANCO; // Usamos blanco para el "fantasma" o boceto
+        }
+
+        // --- LÓGICA DE IMPRESIÓN MEJORADA ---
         String[] panel = generarPanelStringArray(vidaJugador, maxVidaJugador, nombrePirata, vidaPirata, maxVidaPirata,
                 nombreJugador, numPiratas);
 
-        // 1. Calculamos el ancho real del dibujo (ignorando los códigos de color
-        // invisibles)
-        // Esto es necesario porque la primera línea tiene "VERDE" y las otras no.
+        // 1. Calculamos el ancho real del dibujo (basado en el sprite seleccionado)
         int anchoMaximoSprite = 0;
-        for (String s : left) {
-            // Esta expresión regular elimina los códigos ANSI para medir solo el texto
-            // visible
+        for (String s : spriteSeleccionado) {
             String textoSinColor = s.replaceAll("\u001B\\[[;\\d]*m", "");
             if (textoSinColor.length() > anchoMaximoSprite) {
                 anchoMaximoSprite = textoSinColor.length();
             }
         }
 
-        int margenExtra = 4; // Espacio entre dibujo y panel
+        int margenExtra = 4;
 
-        // 2. Ajustamos la altura al elemento más grande (el dibujo)
-        int altoDibujo = left.length;
+        // 2. Ajustamos la altura al elemento más grande
+        int altoDibujo = spriteSeleccionado.length;
         int altoPanel = panel.length;
         int altoTotal = Math.max(altoDibujo, altoPanel);
 
         int paddingTop = (altoTotal - altoPanel) / 2;
 
-        // 3. Bucle de impresión seguro
+        // 3. Bucle de impresión
         for (int i = 0; i < altoTotal; i++) {
 
-            // -- PARTE IZQUIERDA --
+            // -- PARTE IZQUIERDA (SPRITE) --
             String lineaSprite = "";
             int longitudVisible = 0;
 
-            if (i < left.length) {
-                lineaSprite = left[i];
-                // Medimos longitud sin colores para calcular espacios de relleno
+            if (i < spriteSeleccionado.length) {
+                lineaSprite = spriteSeleccionado[i];
                 longitudVisible = lineaSprite.replaceAll("\u001B\\[[;\\d]*m", "").length();
             }
 
-            // Imprimimos el sprite forzando VERDE al inicio para asegurar continuidad
-            // y RESET al final para no manchar el panel
-            System.out.print(VERDE);
-            escribirLento(lineaSprite, 1);
-            // escribirRapido(lineaSprite, 1, 100);
+            // Imprimimos el sprite con el color dinámico elegido
+            System.out.print(colorSprite);
+            escribirLento(lineaSprite, 0);
             System.out.print(RESET);
 
-            // Rellenamos con espacios hasta llegar a la columna del panel
+            // Rellenamos espacios
             int espaciosFaltantes = anchoMaximoSprite - longitudVisible + margenExtra;
-            // Protección por si sale negativo
             if (espaciosFaltantes > 0) {
                 System.out.print(" ".repeat(espaciosFaltantes));
             }
 
-            // -- PARTE DERECHA --
+            // -- PARTE DERECHA (PANEL) --
             if (i >= paddingTop && i < paddingTop + altoPanel) {
-                // Imprimimos el panel con su color (AMARILLO)
                 System.out.print(AMARILLO);
-                escribirLento(panel[i - paddingTop], 1);
-                // escribirRapido(lineaSprite, 5000, 15);
+                escribirLento(panel[i - paddingTop], 0);
                 System.out.print(RESET);
             }
 
             // Salto de línea final
             System.out.println();
         }
+    }
+
+    public static void pausa(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    /**
+     * Realiza una secuencia de animación: Normal -> Boceto -> Normal
+     * Simula un efecto de impacto o tensión.
+     */
+    public static void animarGolpe() {
+
+        int delayAnimacion = 350; // Milisegundos entre cada cambio (ajusta a tu gusto)
+
+        // 1. Estado NORMAL (Left)
+        limpiarConsola();
+        sprites(0, 0, " ", 0, 0, " ", 0, true);
+        pausa(delayAnimacion);
+
+        // 2. Estado BOCETO (Efecto Glitch/Impacto)
+        limpiarConsola();
+        sprites(0, 0, " ", 0, 0, " ", 0, false);
+        pausa(delayAnimacion);
+
+        // 3. Vuelta a NORMAL (Left)
+        limpiarConsola();
+        sprites(0, 0, " ", 0, 0, " ", 0, true);
+
     }
 }
