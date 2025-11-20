@@ -17,9 +17,11 @@ public class Main {
         Illa illa = new Illa(arrayInsultos);
         Heroi heroi;
 
+        boolean respuesta;
+        String heroiNom, insulto, respuestaElegida;
+
         UI.titulo(illa); // imprimimos el título "The Secret of Monkey Island"
 
-        String heroiNom;
         heroiNom = sc.nextLine(); // pedimos el nombre del jugador y creamos un Heroi con este
         heroi = new Heroi(heroiNom, arrayInsultos);
 
@@ -31,17 +33,19 @@ public class Main {
         boolean acabarJuego = false; // variables boolean
         while (!acabarJuego) {
             // Mostramos una UI con las vidas del jugador y pirata
-            UI.sprites(heroi.getVida(), 10, illa.vullPirataActual().getNom(), illa.vullPirataActual().getVida(),
+
+            UI.mostrarUI(heroi.getVida(), 10, illa.vullPirataActual().getNom(),
+                    illa.vullPirataActual().getVida(),
                     illa.vullPirataActual().getVidaMax(), heroi.getNom(), illa.getNumPiratas());
 
-            String insulto = illa.vullPirataActual().insultar(); // mostramos el insulto
+            insulto = illa.vullPirataActual().insultar(); // mostramos el insulto
 
             UI.escribirLento(illa.vullPirataActual().getNom() + ": " + insulto, 15);
 
-            String respuestaElegida = heroi.defensar(); // mostramos las posibles respuestas, eelgimos una y devolvemos
-                                                        // el String de este
-            boolean respuesta = illa.vullPirataActual().replica(respuestaElegida); // llamamos la funcion replica del
-                                                                                   // pirata actual
+            respuestaElegida = heroi.defensar(); // mostramos las posibles respuestas, eelgimos una y devolvemos
+                                                 // el String de este
+            respuesta = illa.vullPirataActual().replica(respuestaElegida); // llamamos la funcion replica del
+                                                                           // pirata actual
 
             UI.animarGolpe();
             UI.pausa(1000);
@@ -50,7 +54,7 @@ public class Main {
             if (respuesta) {
                 if (!illa.vullPirataActual().vida()) {
 
-                    if (!illa.nextPirata()) {
+                    if (illa.nextPirata()) {
                         acabarJuego = true;
                         UI.finDelJuego(true);
                     }

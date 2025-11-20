@@ -2,7 +2,6 @@ package es.cide.programacio;
 
 public class Insult {
 
-    // private int pos;
     // final porque no varian una vez creadas
     private final String textoInsulto;
     private final String textoRespuesta;

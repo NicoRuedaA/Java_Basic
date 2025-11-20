@@ -4,7 +4,8 @@ import java.util.Random;
 
 public class Illa {
 
-    String[] nombresIsla = { "La Española", "Isla Antigua", "Icacos", "Booby Cay", "Waterlemon Cay" };
+    private static final String[] nombresIsla = { "La Española", "Isla Antigua", "Icacos", "Booby Cay",
+            "Waterlemon Cay" };
 
     // vida maxima 7
     private static final int MIDA_VARIACION = 5;
@@ -29,6 +30,7 @@ public class Illa {
     }
 
     public boolean nextPirata() {
+        pirataActual++;
 
         return pirataActual >= arrayPiratas.length;
     }
