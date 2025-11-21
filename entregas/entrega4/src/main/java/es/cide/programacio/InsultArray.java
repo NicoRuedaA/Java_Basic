@@ -1,6 +1,11 @@
+/*
+ * Nicolás Daniel Rueda Araque
+ * 42313237e
+ * 05/11/2025
+ */
 package es.cide.programacio;
 
-//clease creada unicamente para separar insultos del Main y hacerlo más legible
+//clease creada unicamente para almacenar lista de insultos-respuesta. Movido desde el Main para "limpiarlo"
 public class InsultArray {
 
         // array que contiene objeto de tipo insulto. Cada objeto de tipo insulto
@@ -37,10 +42,12 @@ public class InsultArray {
                                         "Me haces pensar que alguien ya lo ha hecho.")
         };
 
+        // lanzamos un error si instanciamos un objeto tipo "insultArray"
         private InsultArray() {
                 throw new IllegalStateException("no instanciar");
         }
 
+        // get de nuestro array de insultos
         public static Insult[] getInsults() {
                 return arrayInsultos;
         }
