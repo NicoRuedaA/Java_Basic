@@ -30,7 +30,7 @@ public class Pirata {
         Random random = new Random();
         // Le asignamos una vida aleatoria al pirata
         // Le asignamos su vida como vida maxima (uso para barra gráfica)
-        this.vida = random.nextInt(VIDA_MIN, VIDA_MAX) + 1;
+        this.vida = random.nextInt(VIDA_MIN, VIDA_MAX + 1);
         this.vidaMax = this.vida;
         // declaramos el nombre del pirata según su numero
         this.nom = "Pirata " + numeroPirata;

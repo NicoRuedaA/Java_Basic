@@ -30,7 +30,7 @@ public class Insult {
         return this.textoInsulto;
     }
 
-    // fet que devuelve le string de la respuesta
+    // get que devuelve le string de la respuesta
     public String getTextoRespuesta() {
         return this.textoRespuesta;
     }

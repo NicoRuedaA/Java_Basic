@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-
         // abrimos el scanner
         Scanner sc = new Scanner(System.in);
 
