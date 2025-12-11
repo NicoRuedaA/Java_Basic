@@ -46,10 +46,8 @@ public class Main {
                     illa.vullPirataActual().getVidaMax(), heroi.getNom(), illa.getMaxPiratas());
 
             // obtenemos el string insulto del "pirata actual"
-            insulto = illa.vullPirataActual().insultar();
+            illa.vullPirataActual().insultar();
 
-            // imprimimos el nombre del pirata actual y el String "insulto"
-            UI.escribirLento(illa.vullPirataActual().getNom() + ": " + insulto, 15);
             // mostramos las posibles respuestas, elgimos una y la devolvemos
             heroi.defensar();
             respuestaElegida = heroi.elegirRespuesta();

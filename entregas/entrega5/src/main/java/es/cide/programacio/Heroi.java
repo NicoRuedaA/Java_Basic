@@ -13,37 +13,10 @@ public class Heroi extends Personatge {
     // array con todas las respuestas posibles del pirata
     private Insult[] arrayRespuestas;
 
-    // constructor por defecto
-    public Heroi() {
-        super();
-        this.arrayRespuestas = new Insult[0];
-    }
-
     // constructor a partir del nombre s (que introduciremos por consola en el main)
     public Heroi(String s, int v, Insult[] arrResp) {
         super(s, v);
         this.arrayRespuestas = arrResp;
-    }
-
-    // restamos 1 de vida. Devolvemos si el jugador sigue vivo
-    public boolean vida() {
-        this.vida--;
-        return vida > 0;
-    }
-
-    public void insultar() {
-
-    }
-
-    // imprimimos la lista de respuestas posibles. Elegimos uno. Lo devolvemos
-    public void defensar() {
-
-        UI.escribirLento(" ¿Qué le contestas? (1-10)", 15);
-        System.out.println();
-        // mostramos las respuestas
-        mostrarRespuestas();
-        // elegimos una
-
     }
 
     public String elegirRespuesta() {
@@ -92,22 +65,32 @@ public class Heroi extends Personatge {
         return res - 1;
     }
 
-    // get que devuelve String de la variable "nom"
-    public String getNom() {
-        return this.nom;
-    }
-
-    // get que devuelve el int de la variable "vida"
-    public int getVida() {
-        return this.vida;
-    }
-
     public void sayHello() {
 
     }
 
     public void sayGoodBye() {
 
+    }
+
+    public void insultar() {
+
+    }
+
+    // imprimimos la lista de respuestas posibles. Elegimos uno. Lo devolvemos
+    public void defensar() {
+
+        UI.escribirLento(" ¿Qué le contestas? (1-10)", 15);
+        System.out.println();
+        // mostramos las respuestas
+        mostrarRespuestas();
+        // elegimos una
+
+    }
+
+    public boolean vida() {
+        this.vida--;
+        return vida > 0;
     }
 
 }
