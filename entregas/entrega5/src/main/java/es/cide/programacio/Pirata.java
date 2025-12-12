@@ -8,7 +8,7 @@ package es.cide.programacio;
 import java.util.Random;
 
 //objeto pirata
-public class Pirata extends Personatge {
+public class Pirata extends Personatge implements Speak, Fight {
     // constantes para crear el pirata
     private static final int NUM_INSULTS = 3;
 
@@ -20,33 +20,22 @@ public class Pirata extends Personatge {
     // creación de pirata
     private static int numeroPirata = 1;
 
-    private static int vidaMax;
-    /*
-     * // Constructor. Le pasamos un array de insultos
-     * public Pirata(Insult[] arrIns) {
-     * super("", 0);
-     * Random random = new Random();
-     * // Le asignamos una vida aleatoria al pirata
-     * // Le asignamos su vida como vida maxima (uso para barra gráfica)
-     * this.vida = random.nextInt(VIDA_MIN, VIDA_MAX + 1);
-     * this.vidaMax = this.vida;
-     * // declaramos el nombre del pirata según su numero
-     * this.nom = "Pirata " + numeroPirata;
-     * numeroPirata++;
-     * // creamos un array de Insultos
-     * generarInsults(arrIns);
-     * }
-     */
+    private int vidaMax;
 
-    public Pirata(Insult[] arrIns, String n, int v) {
-        super(n, v);
+    public Pirata(Insult[] arrIns, int n) {
+        super("", n);
+        Random random = new Random();
+        // Le asignamos una vida al pirata
         this.vidaMax = this.vida;
-        // creamos un array de Insultoss
-
+        // declaramos el nombre del pirata según su numero
+        this.nom = "Pirata " + numeroPirata;
+        numeroPirata++;
+        System.out.println("pirata generad");
+        // creamos un array de Insultos
         generarInsults(arrIns);
     }
 
-    private void generarInsults(Insult[] arrIns) {
+    protected void generarInsults(Insult[] arrIns) {
         Random random = new Random();
         this.arrayInsultos = new Insult[NUM_INSULTS];
         // creamos 3 int aleatorios para obtener 3 insultos aleatorios del array pasado
@@ -89,11 +78,6 @@ public class Pirata extends Personatge {
         return coincide;
     }
 
-    // devolvemos el int de la variable "vidaMax"
-    public int getVidaMax() {
-        return this.vidaMax;
-    }
-
     // devolvemos el objeto tipo Insult del "Insult actual"
     public Insult getInsultoActual() {
         return insultActual;
@@ -110,11 +94,11 @@ public class Pirata extends Personatge {
     }
 
     public void sayHello() {
-
+        System.out.println("Saludo desagradable");
     }
 
     public void sayGoodBye() {
-
+        System.out.println("Despedida desagradable");
     }
 
     public void defensar() {
@@ -133,8 +117,17 @@ public class Pirata extends Personatge {
         return vida > 0;
     }
 
+    public int getVida() {
+        return this.vida;
+    }
+
     public String getNom() {
         return this.nom;
+    }
+
+    // devolvemos el int de la variable "vidaMax"
+    public int getVidaMax() {
+        return this.vidaMax;
     }
 
 }

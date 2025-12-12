@@ -19,9 +19,12 @@ public class Illa {
     private static final int MIDA_VARIACION = 5;
     // tamaño min
     private static final int MIDA_MIN = 3;
+    private static final int VIDA_MAX_PIRATAS = 3;
+    private static final int VIDA_MIN_PIRATAS = 1;
 
     // variables para interactuar durante la partida
     private int mida, pirataActual;
+    private static int vidaPiratas;
     private Random random = new Random();
     // array que guarda los piratas que nos encontraremos durante la isla
     private Pirata[] arrayPiratas;
@@ -29,6 +32,7 @@ public class Illa {
 
     // Constructor
     public Illa(Insult[] arrayInsultos) {
+        Random random = new Random();
         // obtenemos el tamaño de la isla - 3
         mida = random.nextInt(MIDA_VARIACION);
         // creamos el array de piratas con el tamaño final de la isla
@@ -39,15 +43,24 @@ public class Illa {
         this.pirataActual = 0;
 
         // creamos un pirata para llenar el array de piratas
-        for (int i = 0; i < arrayPiratas.length; i++) {
-            arrayPiratas[i] = new Pirata(arrayInsultos);
+        for (int i = 0; i < arrayPiratas.length - 1; i++) {
+            this.vidaPiratas = random.nextInt(VIDA_MIN_PIRATAS, VIDA_MAX_PIRATAS + 1);
+            arrayPiratas[i] = new Pirata(arrayInsultos, vidaPiratas);
+
         }
+
+        // "creamos" al pirata LeChuck con el doble de vida que el resto de piratas
+        arrayPiratas[arrayPiratas.length - 1] = new LeChuck(arrayInsultos, vidaPiratas * 2);
+
+        arrayPiratas[0].sayHello();
     }
 
     // pasamos al siguiente pirata. Devolvemos si hemos recorrido toda la isla
     // (array de piratas)
     public boolean nextPirata() {
         pirataActual++;
+        // al pasar al siguiente pirata, se presenta
+        arrayPiratas[pirataActual].sayHello();
 
         return pirataActual >= arrayPiratas.length;
     }

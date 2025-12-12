@@ -8,10 +8,10 @@ package es.cide.programacio;
 import java.util.Scanner;
 
 //objeto de tipo Heroi
-public class Heroi extends Personatge {
+public class Heroi extends Personatge implements Speak, Fight {
 
     // array con todas las respuestas posibles del pirata
-    private Insult[] arrayRespuestas;
+    protected Insult[] arrayRespuestas;
 
     // constructor a partir del nombre s (que introduciremos por consola en el main)
     public Heroi(String s, int v, Insult[] arrResp) {
@@ -65,14 +65,6 @@ public class Heroi extends Personatge {
         return res - 1;
     }
 
-    public void sayHello() {
-
-    }
-
-    public void sayGoodBye() {
-
-    }
-
     public void insultar() {
 
     }
@@ -84,13 +76,28 @@ public class Heroi extends Personatge {
         System.out.println();
         // mostramos las respuestas
         mostrarRespuestas();
-        // elegimos una
 
     }
 
     public boolean vida() {
         this.vida--;
         return vida > 0;
+    }
+
+    public void sayHello() {
+        System.out.println("Saludo formal");
+    }
+
+    public void sayGoodBye() {
+        System.out.println("Despedida Informal");
+    }
+
+    public int getVida() {
+        return this.vida;
+    }
+
+    public String getNom() {
+        return this.nom;
     }
 
 }

@@ -1,9 +1,12 @@
 package es.cide.programacio;
 
 public class Elaine extends Heroi {
+    // vida (inicial) constante
+    private static final int VIDA = 10;
 
-    public Elaine(int v, Insult[] arrResp) {
-        super("Elaine", v, arrResp);
+    public Elaine(Insult[] arrResp) {
+        super("Elaine", VIDA, arrResp);
+        sayHello();
     }
 
 }
