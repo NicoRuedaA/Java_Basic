@@ -199,7 +199,10 @@ public class UI {
                 "╚═╝░░░░░╚═╝░╚════╝░╚═╝░░╚══╝╚═╝░░╚═╝╚══════╝░░░╚═╝░░░░╚═╝╚═════╝░╚══════╝╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░"),
                 1);
         System.out.println();
-        escribirLento("Bienvenido a " + i.getNom() + ", introduce tu nombre: ", 15);
+        escribirLento(
+                "Bienvenido a " + i.getNom()
+                        + ".Prefieres jugar con el experimentado Guybrush o con a la nueva heroin Elaine? (1-2)\", ",
+                15);
         System.out.print(RESET);
     }
 

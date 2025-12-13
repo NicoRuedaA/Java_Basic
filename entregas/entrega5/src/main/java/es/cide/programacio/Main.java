@@ -16,12 +16,6 @@ public class Main {
 
         // creamos la isla pasandole nuestra array estatica de objetos "insult"
         Illa illa = new Illa(InsultArray.getInsults());
-        // creamos un heroe (vacío)
-        Heroi heroi;
-        Guybrush guybrush = new Guybrush(InsultArray.getInsults());
-        Elaine elaine = new Elaine(InsultArray.getInsults());
-
-        heroi = elaine;
 
         // variables para interactuar durante el juego
         boolean respuestaEsCorrecta, acabarJuego = false;
@@ -29,6 +23,24 @@ public class Main {
 
         // imprimimos el título "The Secret of Monkey Island"
         UI.titulo(illa);
+
+        // creamos un heroe (vacío)
+        Heroi heroi;
+
+        // eleccion del personaje
+
+        int eleccionPersonaje = sc.nextInt();
+        if (eleccionPersonaje == 1) {
+            // elegimos a guybrush
+            Guybrush guybrush = new Guybrush(InsultArray.getInsults());
+            heroi = guybrush;
+
+        } else {
+            // elegimos a elaina
+            Elaine elaine = new Elaine(InsultArray.getInsults());
+
+            heroi = elaine;
+        }
 
         // metodos visuales
         UI.escribirLento("Nuestro héroe " + heroi.getNom() + " se encuentra con " + illa.getMaxPiratas() + " piratas",
@@ -38,15 +50,13 @@ public class Main {
 
         while (!acabarJuego) {
 
-            System.out.println("vida pirata: " + illa.vullPirataActual().getVida());
-
-            System.out.println("vida max: " + illa.vullPirataActual().getVidaMax());
             // Mostramos una UI con las barras de vidas del jugador y pirata
             UI.mostrarUI(heroi.getVida(), 10, illa.vullPirataActual().getNom(),
                     illa.vullPirataActual().getVida(),
                     illa.vullPirataActual().getVidaMax(), heroi.getNom(), illa.getMaxPiratas());
 
             // obtenemos el string insulto del "pirata actual"
+
             illa.vullPirataActual().insultar();
 
             // mostramos las posibles respuestas, elgimos una y la devolvemos

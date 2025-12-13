@@ -20,19 +20,41 @@ public class Pirata extends Personatge implements Speak, Fight {
     // creación de pirata
     private static int numeroPirata = 1;
 
-    private int vidaMax;
+    protected int vidaMax;
 
     public Pirata(Insult[] arrIns, int n) {
         super("", n);
         Random random = new Random();
-        // Le asignamos una vida al pirata
+        // Le asignamos una vida aleatoria al pirata
+        // Le asignamos su vida como vida maxima (uso para barra gráfica)
         this.vidaMax = this.vida;
         // declaramos el nombre del pirata según su numero
         this.nom = "Pirata " + numeroPirata;
         numeroPirata++;
-        System.out.println("pirata generad");
         // creamos un array de Insultos
-        generarInsults(arrIns);
+        this.arrayInsultos = new Insult[NUM_INSULTS];
+
+        // creamos 3 int aleatorios para obtener 3 insultos aleatorios del array pasado
+        int x, y, z;
+        // x es un random entre el tamaño del array y 0
+        x = random.nextInt(arrIns.length);
+        // lo mismo con y pero sin que sea igual a x
+        do {
+            y = random.nextInt(arrIns.length);
+        } while (y == x);
+        // lo mismo con z pero sin que sea igual a x e y
+        do {
+            z = random.nextInt(arrIns.length);
+        } while ((z == x) || (z == y));
+
+        // insertamos los insultos en la lista
+        arrayInsultos[0] = arrIns[x];
+        arrayInsultos[1] = arrIns[y];
+        arrayInsultos[2] = arrIns[z];
+
+        // le asignamos uno de los insultos creados como "insulto actual"
+        this.insultActual = arrayInsultos[random.nextInt(NUM_INSULTS)];
+
     }
 
     protected void generarInsults(Insult[] arrIns) {
@@ -108,7 +130,7 @@ public class Pirata extends Personatge implements Speak, Fight {
     // devolvemos el String del "insulto actual"
     public void insultar() {
         // imprimimos el nombre del pirata actual y el String "insulto"
-        UI.escribirLento(this.getNom() + ": " + this.insultActual, 15);
+        UI.escribirLento(this.getNom() + ": " + this.insultActual.getTextoInsulto(), 15);
     }
 
     @Override

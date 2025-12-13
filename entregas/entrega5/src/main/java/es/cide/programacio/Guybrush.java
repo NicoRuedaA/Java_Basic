@@ -46,7 +46,14 @@ public class Guybrush extends Heroi {
 
     @Override
     public void sayHello() {
-        System.out.println("Saludo informal");
+        String saludo = "\"¡Ajá! ¡Sabía que tenías buen gusto! Soy Guybrush Threepwood, ¡Poderoso Pirata!\n" + //
+                "\n" + //
+                "Prepárate, porque esta vez voy en serio. Tengo un abrigo de cuero, tengo un mapa (creo) y, lo más importante... mira esto: *se señala la cara* ¡Tengo barba! Bueno, es una pelusilla muy masculina, pero cuenta.\n"
+                + //
+                "\n" + //
+                "¡Vamos a encontrar el Big Whoop antes de que LeChuck vuelva a fastidiarlo todo!\"";
+        UI.escribirLento(saludo, 7);
+        System.out.println();
     }
 
     @Override

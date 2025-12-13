@@ -51,8 +51,6 @@ public class Illa {
 
         // "creamos" al pirata LeChuck con el doble de vida que el resto de piratas
         arrayPiratas[arrayPiratas.length - 1] = new LeChuck(arrayInsultos, vidaPiratas * 2);
-
-        arrayPiratas[0].sayHello();
     }
 
     // pasamos al siguiente pirata. Devolvemos si hemos recorrido toda la isla

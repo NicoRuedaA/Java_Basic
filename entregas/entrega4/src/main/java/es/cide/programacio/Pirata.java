@@ -58,6 +58,7 @@ public class Pirata {
 
         // le asignamos uno de los insultos creados como "insulto actual"
         this.insultActual = arrayInsultos[random.nextInt(NUM_INSULTS)];
+
     }
 
     // devolvemos el String del "insulto actual"

@@ -8,6 +8,7 @@ public class LeChuck extends Pirata {
         super(arrIns, v);
         this.nom = "LeChuck";
         this.vida *= 2;
+        this.vidaMax = vida;
         /*
          * this.arrayInsultos = new Insult[4];
          * generarInsults(arrIns);
