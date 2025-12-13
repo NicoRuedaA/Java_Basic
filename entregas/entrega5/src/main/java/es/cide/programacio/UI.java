@@ -1,9 +1,14 @@
+
 /*
  * Nicolás Daniel Rueda Araque
  * 42313237e
  * 05/11/2025
  */
+
 package es.cide.programacio;
+
+import javax.sound.sampled.*;
+import java.io.File;
 
 //clase totalmente opcional. Solo para hacer el output bonito jijijiji
 public class UI {
@@ -22,122 +27,53 @@ public class UI {
     // milisegundos entre cada sprite
     private static final int delayAnimacion = 350;
 
-    // Sprite 1
-    private static final String[] GUYBRUSH_SIDE = new String[] {
-
-            CYAN,
-            "                          ████████████           ",
-            "                        ████████████████         ",
-            "                      ████████████████████       ",
-            "                    ████████████░░░░████████     ",
-            "                    ██████████░░░░██████         ",
-            "                    ██████████░░░░  ░░░░         ",
-            "                    ██████░░░░░░░░░░░░░░░░       ",
-            "                    ██████░░░░░░░░░░████         ",
-            "                  ██████████░░░░░░██████         ",
-            "                ████████████████░░██░░░░         ",
-            "                ████▒▒▒▒▒▒▒▒░░░░████████         ",
-            "                ████▓▓▓▓████▒▒░░░░▒▒             ",
-            "                ▓▓▓▓▓▓▓▓██████░░░░████           ",
-            "              ▓▓▓▓▓▓▓▓▓▓▓▓████▒▒░░░░████         ",
-            "            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓██████▒▒░░▓▓██         ",
-            "          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▒▒░░▓▓██         ",
-            "        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▒▒░░▓▓██         ",
-            "        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▒▒▓▓▓▓██▓▓       ",
-            "        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▓▓▓▓▓▓██▓▓       ",
-            "      ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▓▓▒▒▓▓██▓▓       ",
-            "      ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▒▒▒▒▓▓██▓▓       ",
-            "      ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██████████▓▓       ",
-            "      ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓████    ██▓▓       ",
-            "      ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓████  ████▓▓       ",
-            "        ▓▓▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓████    ██▓▓░░     ",
-            "        ▒▒██████▓▓▓▓▓▓▓▓▓▓▓▓▓▓██████████▓▓░░     ",
-            "        ██░░░░░░▓▓▓▓▓▓▓▓▓▓▓▓▓▓██░░░░░░██▓▓▓▓░░   ",
-            "        ░░░░░░░░░░▓▓▓▓▓▓▓▓▓▓▓▓██░░░░░░██▓▓▓▓░░   ",
-            "        ░░░░░░░░░░▓▓▓▓▓▓▓▓▓▓▓▓██░░░░░░██▓▓▓▓     ",
-            "        ░░  ░░▓▓░░▓▓▓▓▓▓▓▓▓▓▓▓██░░░░░░██▓▓▓▓     ",
-            "            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██░░░░░░██▓▓▓▓     ",
-            "            ▓▓▓▓▓▓▓▓▓▓▓▓░░▓▓▓▓██░░░░░░██▓▓▓▓     ",
-            "            ▒▒▒▒▓▓░░▓▓▓▓░░▓▓▓▓██░░░░░░██▓▓▒▒     ",
-            "            ████▒▒░░▒▒▒▒░░▓▓▓▓██░░░░░░░░▒▒██     ",
-            "              ░░██░░████░░▒▒▒▒▒▒░░░░░░░░██       ",
-            "              ░░░░░░░░░░░░██████░░░░░░░░         ",
-            "              ▓▓▓▓▓▓▓▓▓▓      ▓▓▓▓▓▓▓▓           ",
-            "            ██████████████    ████████████       ",
-            "            ██████████████    ██████████▓▓       ",
-            "            ██████████████    ████████████       ",
-            "              ▓▓▓▓▓▓▓▓▓▓▓▓    ▓▓▓▓▓▓▓▓▓▓         ",
-            "                ▓▓▓▓▓▓▓▓          ▓▓▓▓▓▓         ",
-            "                ██████▓▓          ██▓▓██████     ",
-            "              ██████████▓▓        ▓▓▓▓████████▓▓ ",
-            "            ██████████▓▓          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ",
-            "            ▓▓▓▓▓▓▓▓▓▓▓▓                         ", RESET
-    };
-
-    // sprite 2
-    private static final String[] GUYBRUSH_FRONT = new String[] {
-            CYAN,
-            "                  ██▓▓▓▓▓▓██                     ",
-            "                ██████▓▓▓▓████████               ",
-            "              ████▓▓▓▓▓▓███████▓▓███             ",
-            "              ███████████░░░░░░███████           ",
-            "              ▓▓█████████▓▓███▓▓██▓▓             ",
-            "            ██████▓▓  ░░░░░░  ▓▓██▓▓   ██        ",
-            "            ██  ██░░░░░░░░░░░░▓▓██▓▓ ███         ",
-            "          ██      ░░░░▓▓██▓▓░░▓▓                 ",
-            "                  ██▓▓██████▓▓▓▓▓▓               ",
-            "                  ██▓▓░░░░░░████▓▓▓▓             ",
-            "                ████░░▓▓▓▓▓▓░░██████             ",
-            "          ▓▓▓▓▓▓████░░░░░░░░▓▓████▓▓▓▓▓▓▓▓       ",
-            "        ▓▓▓▓▓▓▓▓████▓▓░░░░░░▓▓████▓▓▓▓▓▓▓▓▓▓▓▓   ",
-            "      ▓▓▓▓▓▓▓▓▓▓████▓▓▓▓░░▓▓▓▓████▓▓▓▓▓▓▓▓▓▓▓▓   ",
-            "    ▓▓▓▓▓▓▓▓▓▓▓▓████▓▓▓▓░░▓▓▓▓████▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ",
-            "    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓████▓▓▓▓▓▓▓▓██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ",
-            "  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▓▓██▓▓▓▓▓▓██▓▓▓▓▓▓▓▓  ▓▓▓▓▓▓▓",
-            "  ▓▓▓▓▓▓▓▓  ▓▓▓▓▓▓██▓▓▓▓██▓▓▓▓▓▓██▓▓▓▓▓▓  ▓▓▓▓▓▓▓",
-            "  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██▓▓▓▓▓▓██▓▓▓▓██▓▓▓▓▓▓  ▓▓▓▓▓▓▓",
-            "  ▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓██▓▓▓▓▓▓▓▓██████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓",
-            "  ████▒▒▒▒▓▓▓▓▓▓▓▓██▓▓▓▓▓▓▓▓██████▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒",
-            "    ██████▓▓▓▓▓▓▓▓██▓▓████████▓▓██▓▓▓▓▓▓▓▓▒▒▒▒███",
-            "    ░░░░░░▓▓▓▓▓▓▓▓██  ██    ██  ██▓▓▓▓▓▓▓▓██████ ",
-            "    ░░░░░░░░▓▓▓▓▓▓██  ████  ██  ██▓▓▓▓▓▓▓▓░░░░░░ ",
-            "      ░░░░▓▓▓▓  ▓▓██  ██    ██  ██▓▓▓▓▓▓░░░░░░░░ ",
-            "        ░░▓▓▓▓▓▓▓▓██░░████████░░██▓▓▓▓▓▓▓▓░░░░░░ ",
-            "          ▓▓▓▓▓▓▓▓██░░░░░░░░░░░░██▓▓▓▓▓▓▓▓░░░░   ",
-            "          ▓▓▓▓▓▓▓▓██░░░░░░░░░░░░████▓▓▓▓▓▓▓▓     ",
-            "          ▓▓▓▓░░▓▓██░░░░░░░░░░░░██▓▓▓▓▓▓▓▓       ",
-            "          ▓▓▓▓░░▓▓██░░░░░░░░░░░░██▓▓▓▓▓▓▓▓       ",
-            "          ▓▓▓▓░░▓▓██░░░░░░░░░░░░██▓▓▓▓░░▓▓       ",
-            "          ▓▓▓▓░░▓▓██░░░░░░  ░░░░░░██▓▓░░██       ",
-            "          ████░░██░░░░░░░░  ░░░░░░░░██░░██       ",
-            "          ████░░██░░░░░░░░  ░░░░░░░░░░░░░░       ",
-            "              ░░░░░░░░░░░░    ░░░░░░░░░░░░       ",
-            "              ▓▓▓▓▓▓▓▓▓▓        ▓▓▓▓▓▓▓▓▓▓▓▓     ",
-            "              ▓▓▓▓▓▓▓▓▓▓▓▓      ▓▓▓▓▓▓▓▓▓▓▓▓     ",
-            "            ██████████▓▓▓▓    ████████████████   ",
-            "            ██████████▓▓▓▓    ████████████████   ",
-            "            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓    ████████████████   ",
-            "                ▓▓▓▓▓▓          ▓▓▓▓▓▓▓▓▓▓▓▓▓▓   ",
-            "                ▓▓████▓▓            ▓▓████▓▓     ",
-            "            ▓▓▓▓████████            ██████████▓▓▓",
-            "          ▓▓████████████            █████████████", RESET
-    };
-
     // **************************************************************************************************************************/
     // Info unicamente visual, no contiene lógica de la práctica
 
     // metodo para escribir un string texto con un delay determinado
     public static void escribirLento(String texto, int delay) {
-        // por cada caracter en el String "texto"
+        // 1. Preparamos el sonido
+        Clip sonido = cargarSonido("sonido.wav"); // Asegúrate que sea .wav
+
+        // 2. Si el sonido cargó bien, lo iniciamos en bucle infinito
+        if (sonido != null) {
+            sonido.loop(Clip.LOOP_CONTINUOUSLY); // Esto lo hace sonar repetidamente
+            sonido.start();
+        }
+
+        // 3. Tu código original (El bucle de escritura)
         for (char c : texto.toCharArray()) {
-            // imprimimos el caracter
             System.out.print(c);
             try {
-                // esperamos
                 Thread.sleep(delay);
             } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
+
+        // 4. Al terminar de escribir, cortamos el sonido inmediatamente
+        if (sonido != null) {
+            sonido.stop();
+            sonido.close(); // Liberamos la memoria
+        }
+
+        System.out.println(); // Salto de línea al final
+    }
+
+    // Método auxiliar para cargar el audio sin ensuciar la función principal
+    private static Clip cargarSonido(String ruta) {
+        try {
+            File archivo = new File(ruta);
+            if (archivo.exists()) {
+                AudioInputStream audioInput = AudioSystem.getAudioInputStream(archivo);
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioInput);
+                return clip;
+            }
+        } catch (Exception e) {
+            System.err.println("Error cargando sonido: " + e.getMessage());
+        }
+        return null;
     }
 
     // mostramos las barras de vida del pirata actual y el protagonista
@@ -275,10 +211,10 @@ public class UI {
         // segun si "x" es 1 o otro
         // seleccionamos el sprite de lado
         if (x == 1) {
-            spriteSeleccionado = GUYBRUSH_SIDE;
+            spriteSeleccionado = Sprite.LECHUCK;
             // o el de en frente
         } else {
-            spriteSeleccionado = GUYBRUSH_FRONT;
+            spriteSeleccionado = Sprite.LECHUCK;
         }
         // por cada string en el array
         for (String trozo : spriteSeleccionado) {
