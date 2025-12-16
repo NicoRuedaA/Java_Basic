@@ -20,7 +20,7 @@ public class Guybrush extends Heroi {
         // mostramos las respuestas
 
         Random random = new Random();
-        int x = random.nextInt(0, 1) + 1;
+        int x = random.nextInt(2);
         if (x == 1) {
             // mostramos la primera mitad de las respuestas
             for (int i = 0; i < arrayRespuestas.length / 2; i++) {
@@ -36,6 +36,7 @@ public class Guybrush extends Heroi {
                 System.out.println();
             }
         }
+
     }
 
     @Override

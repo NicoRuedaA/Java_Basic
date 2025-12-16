@@ -11,15 +11,14 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        // abrimos el scanner
-        Scanner sc = new Scanner(System.in);
 
-        // creamos la isla pasandole nuestra array estatica de objetos "insult"
-        Illa illa = new Illa(InsultArray.getInsults());
+        Scanner sc = new Scanner(System.in); // abrimos el scanner
 
-        // variables para interactuar durante el juego
-        boolean respuestaEsCorrecta, acabarJuego = false;
-        String insulto, respuestaElegida;
+        Illa illa = new Illa(InsultArray.getInsults());// creamos la isla pasandole nuestra array estatica de objetos
+                                                       // "insult"
+        boolean respuestaEsCorrecta, acabarJuego = false, entradaValida = false; // variables para interactuar durante
+                                                                                 // el juego
+        String respuestaElegida;
 
         // imprimimos el título "The Secret of Monkey Island"
         UI.titulo(illa);
@@ -28,8 +27,22 @@ public class Main {
         Heroi heroi;
 
         // eleccion del personaje
+        int eleccionPersonaje = 100;
 
-        int eleccionPersonaje = sc.nextInt();
+        while (!entradaValida || eleccionPersonaje != 1 && eleccionPersonaje != 2) {
+
+            try {
+
+                eleccionPersonaje = sc.nextInt();
+                entradaValida = true;
+
+            } catch (Exception e) {
+                System.out.println("Error: Debes introducir un número entero.");
+                sc.nextLine();
+            }
+
+        }
+
         if (eleccionPersonaje == 1) {
             // elegimos a guybrush
             Guybrush guybrush = new Guybrush(InsultArray.getInsults());
@@ -48,6 +61,8 @@ public class Main {
         UI.pausa(2000);
         UI.limpiarConsola();
 
+        illa.vullPirataActual().sayHello();
+
         while (!acabarJuego) {
 
             // Mostramos una UI con las barras de vidas del jugador y pirata
@@ -62,6 +77,15 @@ public class Main {
             // mostramos las posibles respuestas, elgimos una y la devolvemos
             heroi.defensar();
             respuestaElegida = heroi.elegirRespuesta();
+            Sound attackSound = new Sound();
+            attackSound.reproducirUnaVez("attack.wav");
+
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+
+            }
 
             // comparamos el string devuelto en defensar() con la respuesta correcta del
             // "pirata actual"
@@ -76,21 +100,38 @@ public class Main {
             if (respuestaEsCorrecta) {
                 // restamos una vida
                 if (!illa.vullPirataActual().vida()) {
+                    illa.vullPirataActual().sayGoodBye();
                     // si se queda sin vidas, pasamos al siguiente pirata
                     if (illa.nextPirata()) {
                         // si la isla se queda sin piratas, el juego se acaba y hemos ganado
                         acabarJuego = true;
                         // metodo visual
+                        Sound finSound = new Sound();
+                        finSound.reproducirEnBucle("victory.wav");
+
                         UI.finDelJuego(true);
+
                     }
                 }
                 // si la respuesta es incorrecta
             } else if (!heroi.vida()) {
                 // si nos quedamos sin vida, el juego se acaba y hemos perdido
                 acabarJuego = true;
+                heroi.sayGoodBye();
                 // metodo visual
+                Sound finSound = new Sound();
+                finSound.reproducirEnBucle("game_over.wav");
+
                 UI.finDelJuego(false);
+
             }
+        }
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+
         }
 
         // cerramos el scanner

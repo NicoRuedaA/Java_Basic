@@ -6,14 +6,16 @@ public class LeChuck extends Pirata {
 
     public LeChuck(Insult[] arrIns, int v) {
         super(arrIns, v);
-        this.nom = "LeChuck";
-        this.vida *= 2;
+        this.nom = "Pirata LeChuck";
         this.vidaMax = vida;
-        /*
-         * this.arrayInsultos = new Insult[4];
-         * generarInsults(arrIns);
-         * this.arrayInsultos[3] = insultEspecial;
-         */
+
+        Insult[] nuevosInsultos = new Insult[4];
+
+        for (int i = 0; i < this.arrayInsultos.length; i++) {
+            nuevosInsultos[i] = this.arrayInsultos[i];
+        }
+        nuevosInsultos[3] = insultEspecial;
+        this.arrayInsultos = nuevosInsultos;
     }
 
     @Override

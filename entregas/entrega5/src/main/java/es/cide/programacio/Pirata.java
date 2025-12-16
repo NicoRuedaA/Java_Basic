@@ -89,7 +89,7 @@ public class Pirata extends Personatge implements Speak, Fight {
         boolean coincide = insultActual.getTextoRespuesta().equals(s);
         // actualizamos el insulto actual
         Random random = new Random();
-        this.insultActual = arrayInsultos[random.nextInt(NUM_INSULTS)];
+        this.insultActual = arrayInsultos[random.nextInt(arrayInsultos.length)];
         // imprimimos el resultado
         if (coincide)
             UI.escribirLento("RESPUESTA CORRECTA", 50);
@@ -131,6 +131,10 @@ public class Pirata extends Personatge implements Speak, Fight {
     public void insultar() {
         // imprimimos el nombre del pirata actual y el String "insulto"
         UI.escribirLento(this.getNom() + ": " + this.insultActual.getTextoInsulto(), 15);
+        Sound insult = new Sound();
+
+        insult.reproducirUnaVez("pirate.wav");
+
     }
 
     @Override

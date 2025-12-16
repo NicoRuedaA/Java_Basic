@@ -58,7 +58,8 @@ public class Illa {
     public boolean nextPirata() {
         pirataActual++;
         // al pasar al siguiente pirata, se presenta
-        arrayPiratas[pirataActual].sayHello();
+        if (pirataActual < arrayPiratas.length)
+            arrayPiratas[pirataActual].sayHello();
 
         return pirataActual >= arrayPiratas.length;
     }
