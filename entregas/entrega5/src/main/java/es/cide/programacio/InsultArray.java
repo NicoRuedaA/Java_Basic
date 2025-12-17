@@ -39,7 +39,8 @@ public class InsultArray {
                                         "¿TAN rápido corres?"),
 
                         new Insult("¡Me das ganas de vomitar!",
-                                        "Me haces pensar que alguien ya lo ha hecho.")
+                                        "Me haces pensar que alguien ya lo ha hecho."),
+                        new Insult("Insulto exclusivo Lechuck", "Respuesta exclusiva Lechuck")
         };
 
         // lanzamos un error si instanciamos un objeto tipo "insultArray"

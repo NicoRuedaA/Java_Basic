@@ -5,11 +5,31 @@ import java.util.Random;
 public class Guybrush extends Heroi {
 
     // vida (inicial) constante
-    private static final int VIDA = 12;
+    private static final int VIDA_INICIAL = 12;
 
+    // ***CONSTRUCTORES***
     public Guybrush(Insult[] arrResp) {
-        super("Guybrush", VIDA, arrResp);
+        super("Guybrush", VIDA_INICIAL, arrResp);
         sayHello();
+    }
+
+    @Override
+    public void sayHello() {
+        String saludo = UI.VERDE + " \"¡Ajá! ¡Sabía que tenías buen gusto! Soy Guybrush Threepwood, ¡Poderoso Pirata!\n"
+                + //
+                "\n" + //
+                "Prepárate, porque esta vez voy en serio. Tengo un abrigo de cuero, tengo un mapa (creo) y, lo más importante... mira esto: *se señala la cara* ¡Tengo barba! Bueno, es una pelusilla muy masculina, pero cuenta.\n"
+                + //
+                "\n" + //
+                "¡Vamos a encontrar el Big Whoop antes de que LeChuck vuelva a fastidiarlo todo!\"";
+        UI.escribirLento(saludo, 7);
+        UI.pausa(1000);
+        System.out.println();
+    }
+
+    @Override
+    public void sayGoodBye() {
+        System.out.println("Despedida informal");
     }
 
     @Override
@@ -39,27 +59,11 @@ public class Guybrush extends Heroi {
 
     }
 
+    // ***METODOS CON RETURNs***
     @Override
     public boolean vida() {
         this.vida -= 2;
         return vida > 0;
-    }
-
-    @Override
-    public void sayHello() {
-        String saludo = "\"¡Ajá! ¡Sabía que tenías buen gusto! Soy Guybrush Threepwood, ¡Poderoso Pirata!\n" + //
-                "\n" + //
-                "Prepárate, porque esta vez voy en serio. Tengo un abrigo de cuero, tengo un mapa (creo) y, lo más importante... mira esto: *se señala la cara* ¡Tengo barba! Bueno, es una pelusilla muy masculina, pero cuenta.\n"
-                + //
-                "\n" + //
-                "¡Vamos a encontrar el Big Whoop antes de que LeChuck vuelva a fastidiarlo todo!\"";
-        UI.escribirLento(saludo, 7);
-        System.out.println();
-    }
-
-    @Override
-    public void sayGoodBye() {
-        System.out.println("Despedida informal");
     }
 
 }

@@ -2,8 +2,6 @@ package es.cide.programacio;
 
 public class LeChuck extends Pirata {
 
-    Insult insultEspecial = new Insult("Insult", "Resposta");
-
     public LeChuck(Insult[] arrIns, int v) {
         super(arrIns, v);
         this.nom = "Pirata LeChuck";
@@ -14,8 +12,10 @@ public class LeChuck extends Pirata {
         for (int i = 0; i < this.arrayInsultos.length; i++) {
             nuevosInsultos[i] = this.arrayInsultos[i];
         }
-        nuevosInsultos[3] = insultEspecial;
-        this.arrayInsultos = nuevosInsultos;
+
+        // el ultimo insulto esta reservado para LeChuck
+        nuevosInsultos[3] = arrIns[arrIns.length - 1];
+        setArrayInsults(nuevosInsultos);
     }
 
     @Override

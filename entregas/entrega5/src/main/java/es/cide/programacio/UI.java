@@ -11,10 +11,12 @@ package es.cide.programacio;
 public class UI {
 
     // Colores para cambiar el color del texto por consola
-    private static final String RESET = "\u001B[0m";
-    private static final String CYAN = "\u001B[36m";
-    private static final String BLANCO = "\u001B[37m";
-    private static final String AMARILLO = "\u001B[33m";
+    public static final String RESET = "\u001B[0m";
+    public static final String CYAN = "\u001B[36m";
+    public static final String BLANCO = "\u001B[37m";
+    public static final String AMARILLO = "\u001B[33m";
+    public static final String VERDE = "\u001b[32m";
+    public static final String ROSA = "\u001B[35m";
 
     // Extras para modificar la apariencia del texto por consola
     private static final String NEGRITA = "\u001B[1m";
@@ -110,7 +112,7 @@ public class UI {
         System.out.println();
         escribirLento(
                 "Bienvenido a " + i.getNom()
-                        + ".Prefieres jugar con el experimentado Guybrush o con a la nueva heroin Elaine? (1-2)\", ",
+                        + ". Prefieres jugar con el experimentado Guybrush o con a la nueva heroin Elaine? (1-2)\" ",
                 15);
         System.out.print(RESET);
     }

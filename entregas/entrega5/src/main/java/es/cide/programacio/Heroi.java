@@ -12,13 +12,40 @@ public class Heroi extends Personatge implements Speak, Fight {
 
     // array con todas las respuestas posibles del pirata
     protected Insult[] arrayRespuestas;
+    protected int vidaMax;
 
-    // constructor a partir del nombre s (que introduciremos por consola en el main)
+    // ***CONSTRUCTORES***
     public Heroi(String s, int v, Insult[] arrResp) {
+        // constructor a partir del nombre s (que introduciremos por consola en el main)
         super(s, v);
         this.arrayRespuestas = arrResp;
+        this.vidaMax = vidaMax;
     }
 
+    // ***METODOS VOID PUBLICOS***
+    public void insultar() {
+
+    }
+
+    // imprimimos la lista de respuestas posibles. Elegimos uno. Lo devolvemos
+    public void defensar() {
+
+        UI.escribirLento(" ¿Qué le contestas? (1-10)", 15);
+        System.out.println();
+        // mostramos las respuestas
+        mostrarRespuestas();
+
+    }
+
+    public void sayHello() {
+        System.out.println("Saludo formal");
+    }
+
+    public void sayGoodBye() {
+        System.out.println("Despedida Informal");
+    }
+
+    // ***METODOS CON RETURN PUBLICOS***
     public String elegirRespuesta() {
         Scanner scHeroi = new Scanner(System.in); // no hace falta cerrarlo. Basta con cerrar Scanner al final en el
                                                   // main. Lo ideal sería pasar el scanner del main tal que defensar(sc)
@@ -28,6 +55,12 @@ public class Heroi extends Personatge implements Speak, Fight {
         return arrayRespuestas[respuesta].getTextoRespuesta();
     }
 
+    public boolean vida() {
+        this.vida--;
+        return vida > 0;
+    }
+
+    // ***METODOS VOID PRIVADOS***
     // imprimimos la lista de respuestas posibles
     private void mostrarRespuestas() {
         // mostramos cada String espuesta del array de objeto tipo Insults
@@ -38,6 +71,7 @@ public class Heroi extends Personatge implements Speak, Fight {
         }
     }
 
+    // ***METODOS CON RETURN PRIVADOS***
     // validamos el input de defensar()
     private int getInputValidado(Scanner scan) {
         int res = -1;
@@ -65,39 +99,36 @@ public class Heroi extends Personatge implements Speak, Fight {
         return res - 1;
     }
 
-    public void insultar() {
-
-    }
-
-    // imprimimos la lista de respuestas posibles. Elegimos uno. Lo devolvemos
-    public void defensar() {
-
-        UI.escribirLento(" ¿Qué le contestas? (1-10)", 15);
-        System.out.println();
-        // mostramos las respuestas
-        mostrarRespuestas();
-
-    }
-
-    public boolean vida() {
-        this.vida--;
-        return vida > 0;
-    }
-
-    public void sayHello() {
-        System.out.println("Saludo formal");
-    }
-
-    public void sayGoodBye() {
-        System.out.println("Despedida Informal");
-    }
+    // ***GETS***
 
     public int getVida() {
         return this.vida;
     }
 
+    public int getVidaMax() {
+        return this.vidaMax;
+    }
+
     public String getNom() {
         return this.nom;
+    }
+
+    public Insult[] getArrayRespuestas() {
+        return this.arrayRespuestas;
+    }
+
+    // ***SETS***
+
+    public void setVida(int v) {
+        this.vida = v;
+    }
+
+    public void setNom(String n) {
+        this.nom = n;
+    }
+
+    public void setArrayRespuestas(Insult[] ar) {
+        this.arrayRespuestas = ar;
     }
 
 }

@@ -37,14 +37,16 @@ public class Pirata extends Personatge implements Speak, Fight {
         // creamos 3 int aleatorios para obtener 3 insultos aleatorios del array pasado
         int x, y, z;
         // x es un random entre el tamaño del array y 0
-        x = random.nextInt(arrIns.length);
+        // hacemos length-1 ya que reservamos la ultima posicion del array para el
+        // insulto especial de LeChuck
+        x = random.nextInt(arrIns.length - 1);
         // lo mismo con y pero sin que sea igual a x
         do {
-            y = random.nextInt(arrIns.length);
+            y = random.nextInt(arrIns.length - 1);
         } while (y == x);
         // lo mismo con z pero sin que sea igual a x e y
         do {
-            z = random.nextInt(arrIns.length);
+            z = random.nextInt(arrIns.length - 1);
         } while ((z == x) || (z == y));
 
         // insertamos los insultos en la lista
@@ -143,17 +145,36 @@ public class Pirata extends Personatge implements Speak, Fight {
         return vida > 0;
     }
 
+    // ***GETS***
+
     public int getVida() {
         return this.vida;
+    }
+
+    public int getVidaMax() {
+        return this.vidaMax;
     }
 
     public String getNom() {
         return this.nom;
     }
 
-    // devolvemos el int de la variable "vidaMax"
-    public int getVidaMax() {
-        return this.vidaMax;
+    public Insult[] getArrayiInsults() {
+        return this.arrayInsultos;
+    }
+
+    // ***SETS***
+
+    public void setVida(int v) {
+        this.vida = v;
+    }
+
+    public void setNom(String n) {
+        this.nom = n;
+    }
+
+    public void setArrayInsults(Insult[] ar) {
+        this.arrayInsultos = ar;
     }
 
 }

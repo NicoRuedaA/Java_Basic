@@ -66,7 +66,7 @@ public class Main {
         while (!acabarJuego) {
 
             // Mostramos una UI con las barras de vidas del jugador y pirata
-            UI.mostrarUI(heroi.getVida(), 10, illa.vullPirataActual().getNom(),
+            UI.mostrarUI(heroi.getVida(), heroi.getVidaMax(), illa.vullPirataActual().getNom(),
                     illa.vullPirataActual().getVida(),
                     illa.vullPirataActual().getVidaMax(), heroi.getNom(), illa.getMaxPiratas());
 
