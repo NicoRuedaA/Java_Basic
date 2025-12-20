@@ -40,6 +40,7 @@ public class InsultArray {
 
                         new Insult("¡Me das ganas de vomitar!",
                                         "Me haces pensar que alguien ya lo ha hecho."),
+
                         new Insult("Insulto exclusivo Lechuck", "Respuesta exclusiva Lechuck")
         };
 

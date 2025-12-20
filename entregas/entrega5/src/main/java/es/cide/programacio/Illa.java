@@ -30,7 +30,7 @@ public class Illa {
     private Pirata[] arrayPiratas;
     private String nomIlla;
 
-    // Constructor
+    // ***CONSTRUCTORES***
     public Illa(Insult[] arrayInsultos) {
         Random random = new Random();
         // obtenemos el tamaño de la isla - 3
@@ -55,6 +55,7 @@ public class Illa {
 
     // pasamos al siguiente pirata. Devolvemos si hemos recorrido toda la isla
     // (array de piratas)
+    // ***METODOS PUBLICOS***
     public boolean nextPirata() {
         pirataActual++;
         // al pasar al siguiente pirata, se presenta
@@ -75,6 +76,15 @@ public class Illa {
     }
 
     // devolvemos el array de piratas
+
+    // imprimimos el numero del pirata atual. Imprimimos el "insulto actual" del
+    // "pirta actual"
+    public Insult getInsultoActual() {
+        System.out.println("Pirata actual: " + pirataActual);
+        return vullPirataActual().getInsultoActual();
+    }
+
+    // ***GETS***
     public Pirata[] getArrayPiratas() {
         return this.arrayPiratas;
     }
@@ -89,10 +99,15 @@ public class Illa {
         return this.nomIlla;
     }
 
-    // imprimimos el numero del pirata atual. Imprimimos el "insulto actual" del
-    // "pirta actual"
-    public Insult getInsultoActual() {
-        System.out.println("Pirata actual: " + pirataActual);
-        return vullPirataActual().getInsultoActual();
+    // ***SETS***
+
+    public void setArrayPiratas(Pirata[] x) {
+        this.arrayPiratas = x;
     }
+
+    // devolvemos el nombre de la isla
+    public void setNom(String s) {
+        this.nomIlla = s;
+    }
+
 }

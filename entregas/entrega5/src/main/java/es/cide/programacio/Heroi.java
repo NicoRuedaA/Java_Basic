@@ -61,8 +61,9 @@ public class Heroi extends Personatge implements Speak, Fight {
     }
 
     // ***METODOS VOID PRIVADOS***
-    // imprimimos la lista de respuestas posibles
+
     private void mostrarRespuestas() {
+        // imprimimos la lista de respuestas posibles
         // mostramos cada String espuesta del array de objeto tipo Insults
 
         for (int i = 0; i < arrayRespuestas.length; i++) {
@@ -72,8 +73,9 @@ public class Heroi extends Personatge implements Speak, Fight {
     }
 
     // ***METODOS CON RETURN PRIVADOS***
-    // validamos el input de defensar()
+
     private int getInputValidado(Scanner scan) {
+        // validamos el input de defensar()
         int res = -1;
         System.out.println();
 

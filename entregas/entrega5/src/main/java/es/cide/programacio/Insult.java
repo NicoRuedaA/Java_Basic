@@ -13,6 +13,7 @@ public class Insult {
     private final String textoInsulto;
     private final String textoRespuesta;
 
+    // ***CONSTRUCTORES***
     // constructor por defecto
     public Insult() {
         this.textoRespuesta = "";

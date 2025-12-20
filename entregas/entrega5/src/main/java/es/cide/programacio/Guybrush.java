@@ -13,6 +13,7 @@ public class Guybrush extends Heroi {
         sayHello();
     }
 
+    // ***METODOS PUBLICOS***
     @Override
     public void sayHello() {
         String saludo = UI.VERDE + " \"¡Ajá! ¡Sabía que tenías buen gusto! Soy Guybrush Threepwood, ¡Poderoso Pirata!\n"

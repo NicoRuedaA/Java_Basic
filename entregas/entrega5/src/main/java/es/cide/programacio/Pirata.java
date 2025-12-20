@@ -163,6 +163,10 @@ public class Pirata extends Personatge implements Speak, Fight {
         return this.arrayInsultos;
     }
 
+    public Insult getInsultActual() {
+        return this.insultActual;
+    }
+
     // ***SETS***
 
     public void setVida(int v) {
@@ -175,6 +179,10 @@ public class Pirata extends Personatge implements Speak, Fight {
 
     public void setArrayInsults(Insult[] ar) {
         this.arrayInsultos = ar;
+    }
+
+    public void setInsultoActual(Insult x) {
+        this.insultActual = x;
     }
 
 }
