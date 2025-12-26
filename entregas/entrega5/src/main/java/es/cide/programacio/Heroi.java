@@ -12,14 +12,15 @@ public class Heroi extends Personatge implements Speak, Fight {
 
     // array con todas las respuestas posibles del pirata
     protected Insult[] arrayRespuestas;
-    protected int vidaMax;
+    protected int vidaMax, vidainicial = 0;
 
     // ***CONSTRUCTORES***
     public Heroi(String s, int v, Insult[] arrResp) {
         // constructor a partir del nombre s (que introduciremos por consola en el main)
         super(s, v);
         this.arrayRespuestas = arrResp;
-        this.vidaMax = vidaMax;
+        this.vidainicial = v;
+        this.vidaMax = vidainicial;
     }
 
     // ***METODOS VOID PUBLICOS***
