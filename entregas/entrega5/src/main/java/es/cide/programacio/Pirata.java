@@ -94,14 +94,20 @@ public class Pirata extends Personatge implements Speak, Fight {
 
     public void sayHello() {
         // imprimimos el nombre del pirata actual + el saludo
-        String saludoDesagradable = "¡Arr! ¿Qué quieres, tú? Tienes cara de ser un aspirante a pirata... o de vender chaquetas de cuero usadas. ¡Habla rápido antes de que mi grog se caliente o decida usarte para limpiar la cubierta!";
+        String saludoDesagradable = UI.ROJO
+                + "¡Arr! ¿Qué quieres, tú? Tienes cara de ser un aspirante a pirata... o de vender chaquetas de cuero usadas. ¡Habla rápido antes de que mi grog se caliente o decida usarte para limpiar la cubierta!"
+                + UI.RESET;
+
         UI.escribirLento(this.getNom() + ": " + saludoDesagradable, 15);
     }
 
     public void sayGoodBye() {
         // imprimimos el nombre del pirata actual + el saludo
-        String saludoDesagradable = "¡Largo de aquí, grumete, me estás dando dolor de cabeza! Y ten cuidado al salir... ¡MIRA DETRÁS DE TI! ¡Un mono de tres cabezas!";
-        UI.escribirLento(this.getNom() + ": " + saludoDesagradable, 15);
+        String saludoDesagradable = UI.ROJO
+                + "¡Largo de aquí, grumete, me estás dando dolor de cabeza! Y ten cuidado al salir... ¡MIRA DETRÁS DE TI! ¡Un mono de tres cabezas!"
+                + UI.RESET;
+        UI.escribirLento(this.getNom() + ": " + saludoDesagradable, 20);
+        UI.limpiarConsola();
     }
 
     public void defensar() {

@@ -12,6 +12,7 @@ public class UI {
 
     // Colores para cambiar el color del texto por consola
     public static final String RESET = "\u001B[0m";
+    public static final String ROJO = "\033[31m";
     public static final String CYAN = "\u001B[36m";
     public static final String BLANCO = "\u001B[37m";
     public static final String AMARILLO = "\u001B[33m";
