@@ -20,6 +20,7 @@ public class Insult {
         this.textoInsulto = "";
     }
 
+    // ***CONSTRUCTORES***
     // constructor para un insulto concreto
     public Insult(String textoInsulto, String textoRespuesta) {
         this.textoInsulto = textoInsulto;

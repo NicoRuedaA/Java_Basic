@@ -9,8 +9,8 @@ public class LeChuck extends Pirata {
 
         Insult[] nuevosInsultos = new Insult[4];
 
-        for (int i = 0; i < this.arrayInsultos.length; i++) {
-            nuevosInsultos[i] = this.arrayInsultos[i];
+        for (int i = 0; i < this.arrayInsults.length; i++) {
+            nuevosInsultos[i] = this.arrayInsults[i];
         }
 
         // el ultimo insulto esta reservado para LeChuck

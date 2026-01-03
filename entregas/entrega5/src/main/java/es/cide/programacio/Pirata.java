@@ -10,59 +10,28 @@ import java.util.Random;
 //objeto pirata
 public class Pirata extends Personatge implements Speak, Fight {
     // constantes para crear el pirata
-    private static final int NUM_INSULTS = 3;
+    private static final int NUM_INSULTS = 3; // numero de insultos que tendrá el pirata
 
-    private Insult insultActual;
-    // array de Insultos que almacenará 3 insultos aleatorios. No se pueden repetir.
-    // Se pueden repetir entre piratas
-    protected Insult[] arrayInsultos;
-    // un contador estatico para el nombre del pirata. Va sumando 1 con cada
-    // creación de pirata
-    private static int numeroPirata = 1;
-
-    protected int vidaMax;
+    private Insult insultActual; // usaremos como ""puntero"" del insulto actual
+    protected Insult[] arrayInsults; // array donde guardaremos nuestros insultos
+    private static int numeroPirata = 1; // variable para indicar el numero del pirata, lo usaremos para el nombre
+    protected int vidaMax; // variable vida max
 
     public Pirata(Insult[] arrIns, int n) {
-        super("", n);
-        Random random = new Random();
-        // Le asignamos una vida aleatoria al pirata
+        // creamos el pirata a través de herencia
+        super("Pirata " + numeroPirata, n);
         // Le asignamos su vida como vida maxima (uso para barra gráfica)
         this.vidaMax = this.vida;
-        // declaramos el nombre del pirata según su numero
-        this.nom = "Pirata " + numeroPirata;
         numeroPirata++;
-        // creamos un array de Insultos
-        this.arrayInsultos = new Insult[NUM_INSULTS];
-
-        // creamos 3 int aleatorios para obtener 3 insultos aleatorios del array pasado
-        int x, y, z;
-        // x es un random entre el tamaño del array y 0
-        // hacemos length-1 ya que reservamos la ultima posicion del array para el
-        // insulto especial de LeChuck
-        x = random.nextInt(arrIns.length - 1);
-        // lo mismo con y pero sin que sea igual a x
-        do {
-            y = random.nextInt(arrIns.length - 1);
-        } while (y == x);
-        // lo mismo con z pero sin que sea igual a x e y
-        do {
-            z = random.nextInt(arrIns.length - 1);
-        } while ((z == x) || (z == y));
-
-        // insertamos los insultos en la lista
-        arrayInsultos[0] = arrIns[x];
-        arrayInsultos[1] = arrIns[y];
-        arrayInsultos[2] = arrIns[z];
-
-        // le asignamos uno de los insultos creados como "insulto actual"
-        this.insultActual = arrayInsultos[random.nextInt(NUM_INSULTS)];
-
+        // generamos los insultos
+        generarInsults(arrIns);
     }
 
     protected void generarInsults(Insult[] arrIns) {
         Random random = new Random();
-        this.arrayInsultos = new Insult[NUM_INSULTS];
-        // creamos 3 int aleatorios para obtener 3 insultos aleatorios del array pasado
+        // arrayinsults es igual a una nueva array de insultos de tamaño NUM_INSULTS
+        this.arrayInsults = new Insult[NUM_INSULTS];
+        // creamos 3 int para obtener 3 insultos aleatorios del array "arrIns"
         int x, y, z;
         // x es un random entre el tamaño del array y 0
         x = random.nextInt(arrIns.length);
@@ -76,22 +45,21 @@ public class Pirata extends Personatge implements Speak, Fight {
         } while ((z == x) || (z == y));
 
         // insertamos los insultos en la lista
-        this.arrayInsultos[0] = arrIns[x];
-        this.arrayInsultos[1] = arrIns[y];
-        this.arrayInsultos[2] = arrIns[z];
-        this.insultActual = arrayInsultos[random.nextInt(NUM_INSULTS)];
-
+        this.arrayInsults[0] = arrIns[x];
+        this.arrayInsults[1] = arrIns[y];
+        this.arrayInsults[2] = arrIns[z];
+        this.insultActual = arrayInsults[random.nextInt(NUM_INSULTS)];
     }
 
-    // devolvemos false o true según la comparación entre el String pasado "s" y la
-    // respuesta de nuestro insulto actual
     public boolean replica(String s) {
+        // devolvemos false o true
+        // según la comparación entre el String pasado "s" y la respuesta de nuestro
+        // insulto actual
 
-        // comparamos el string pasado conla respuesta del insulto actual
+        // comparamos "s" con la respuesta del insulto actual
         boolean coincide = insultActual.getTextoRespuesta().equals(s);
         // actualizamos el insulto actual
-        Random random = new Random();
-        this.insultActual = arrayInsultos[random.nextInt(arrayInsultos.length)];
+        this.insultActual = nouInsult();
         // imprimimos el resultado
         if (coincide)
             UI.escribirLento("RESPUESTA CORRECTA", 50);
@@ -102,39 +70,50 @@ public class Pirata extends Personatge implements Speak, Fight {
         return coincide;
     }
 
-    // devolvemos el objeto tipo Insult del "Insult actual"
+    private Insult nouInsult() {
+        Random random = new Random();
+        return arrayInsults[random.nextInt(arrayInsults.length)];
+    }
+
     public Insult getInsultoActual() {
+        // devolvemos el objeto tipo Insult del "Insult actual"
         return insultActual;
     }
 
-    // devolvemos un objeto insulto concreto por índice X
     public Insult getInsulto(int x) {
+        // devolvemos un objeto insulto concreto por índice X
         if (x >= NUM_INSULTS) {
+            // si x es mayor que el numero de insultos, devuelve un error en forma de
+            // mensaje
             UI.escribirLento("X fuera de rango", 10);
-            return this.arrayInsultos[0];
+            return this.arrayInsults[0];
         }
-        return this.arrayInsultos[x];
+        return this.arrayInsults[x];
 
     }
 
     public void sayHello() {
-        System.out.println("Saludo desagradable");
+        // imprimimos el nombre del pirata actual + el saludo
+        String saludoDesagradable = "¡Arr! ¿Qué quieres, tú? Tienes cara de ser un aspirante a pirata... o de vender chaquetas de cuero usadas. ¡Habla rápido antes de que mi grog se caliente o decida usarte para limpiar la cubierta!";
+        UI.escribirLento(this.getNom() + ": " + saludoDesagradable, 15);
     }
 
     public void sayGoodBye() {
-        System.out.println("Despedida desagradable");
+        // imprimimos el nombre del pirata actual + el saludo
+        String saludoDesagradable = "¡Largo de aquí, grumete, me estás dando dolor de cabeza! Y ten cuidado al salir... ¡MIRA DETRÁS DE TI! ¡Un mono de tres cabezas!";
+        UI.escribirLento(this.getNom() + ": " + saludoDesagradable, 15);
     }
 
     public void defensar() {
-
+        // el pirata no se defiende. Tiene que existir por herencia
     }
 
-    // devolvemos el String del "insulto actual"
     public void insultar() {
-        // imprimimos el nombre del pirata actual y el String "insulto"
+        // devolvemos el String del "insulto actual"
+        // imprimimos el nombre del pirata actual + el"insulto"
         UI.escribirLento(this.getNom() + ": " + this.insultActual.getTextoInsulto(), 15);
-        Sound insult = new Sound();
 
+        Sound insult = new Sound();
         insult.reproducirUnaVez("pirate.wav");
 
     }
@@ -160,7 +139,7 @@ public class Pirata extends Personatge implements Speak, Fight {
     }
 
     public Insult[] getArrayiInsults() {
-        return this.arrayInsultos;
+        return this.arrayInsults;
     }
 
     public Insult getInsultActual() {
@@ -178,10 +157,10 @@ public class Pirata extends Personatge implements Speak, Fight {
     }
 
     public void setArrayInsults(Insult[] ar) {
-        this.arrayInsultos = ar;
+        this.arrayInsults = ar;
     }
 
-    public void setInsultoActual(Insult x) {
+    public void setInsultActual(Insult x) {
         this.insultActual = x;
     }
 
