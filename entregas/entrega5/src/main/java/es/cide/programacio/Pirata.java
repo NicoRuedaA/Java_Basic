@@ -17,6 +17,7 @@ public class Pirata extends Personatge implements Speak, Fight {
     private static int numeroPirata = 1; // variable para indicar el numero del pirata, lo usaremos para el nombre
     protected int vidaMax; // variable vida max
 
+    // ***CONSTRUCTORES***
     public Pirata(Insult[] arrIns, int n) {
         // creamos el pirata a través de herencia
         super("Pirata " + numeroPirata, n);
@@ -27,6 +28,7 @@ public class Pirata extends Personatge implements Speak, Fight {
         generarInsults(arrIns);
     }
 
+    // ***METODOS PRIVADOS***
     protected void generarInsults(Insult[] arrIns) {
         Random random = new Random();
         // arrayinsults es igual a una nueva array de insultos de tamaño NUM_INSULTS
@@ -51,6 +53,12 @@ public class Pirata extends Personatge implements Speak, Fight {
         this.insultActual = arrayInsults[random.nextInt(NUM_INSULTS)];
     }
 
+    private Insult nouInsult() {
+        Random random = new Random();
+        return arrayInsults[random.nextInt(arrayInsults.length)];
+    }
+
+    // ***METODOS PUBLICOS***
     public boolean replica(String s) {
         // devolvemos false o true
         // según la comparación entre el String pasado "s" y la respuesta de nuestro
@@ -68,11 +76,6 @@ public class Pirata extends Personatge implements Speak, Fight {
         System.out.println();
         // devolvemos el resultado
         return coincide;
-    }
-
-    private Insult nouInsult() {
-        Random random = new Random();
-        return arrayInsults[random.nextInt(arrayInsults.length)];
     }
 
     public Insult getInsultoActual() {

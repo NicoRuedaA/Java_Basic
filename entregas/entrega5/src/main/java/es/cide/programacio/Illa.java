@@ -19,13 +19,13 @@ public class Illa {
     private static final int MIDA_VARIACION = 5;
     // tamaño min
     private static final int MIDA_MIN = 3;
+    // intervalo de piratas
     private static final int VIDA_MAX_PIRATAS = 3;
     private static final int VIDA_MIN_PIRATAS = 1;
 
     // variables para interactuar durante la partida
     private int mida, pirataActual;
     private static int vidaPiratas;
-    private Random random = new Random();
     // array que guarda los piratas que nos encontraremos durante la isla
     private Pirata[] arrayPiratas;
     private String nomIlla;

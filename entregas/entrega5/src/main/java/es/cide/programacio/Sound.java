@@ -8,8 +8,8 @@ public class Sound {
 
     private Clip clip;
 
-    // Método para cargar y reproducir en bucle
     public void reproducirEnBucle(String rutaArchivo) {
+        // Método para cargar y reproducir en bucle
         try {
             File archivo = new File(rutaArchivo);
 
@@ -31,6 +31,7 @@ public class Sound {
     }
 
     public void reproducirUnaVez(String rutaArchivo) {
+        // Método para cargar y reproducir una vez
         try {
             File archivo = new File(rutaArchivo);
 
@@ -58,8 +59,8 @@ public class Sound {
 
     }
 
-    // Método para detener y limpiar memoria
     public void detener() {
+        // Método para detener y limpiar memoria
         if (clip != null) {
             if (clip.isRunning()) {
                 clip.stop();

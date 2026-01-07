@@ -20,13 +20,13 @@ public class Insult {
         this.textoInsulto = "";
     }
 
-    // ***CONSTRUCTORES***
     // constructor para un insulto concreto
     public Insult(String textoInsulto, String textoRespuesta) {
         this.textoInsulto = textoInsulto;
         this.textoRespuesta = textoRespuesta;
     }
 
+    // ***GETS***
     // get que devuelve el String del insulto
     public String getTextoInsulto() {
         return this.textoInsulto;

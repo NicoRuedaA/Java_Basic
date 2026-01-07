@@ -55,6 +55,11 @@ public class Main {
             heroi = elaine;
         }
 
+        // BORRAR
+        UI.animarGolpe();
+        UI.pausa(1000);
+        UI.limpiarConsola();
+
         // metodos visuales
         UI.escribirLento("Nuestro héroe " + heroi.getNom() + " se encuentra con " + illa.getMaxPiratas() + " piratas",
                 40);
