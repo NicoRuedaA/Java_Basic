@@ -51,7 +51,19 @@ public class InsultArray {
 
         // get de nuestro array de insultos
         public static Insult[] getInsults() {
-                return arrayInsultos;
+                Insult[] arrayAuxiliar = new Insult[arrayInsultos.length - 1]; // nueva array del tamaño de nuestra
+                                                                               // lista -1
+                for (int i = 0; i < arrayAuxiliar.length; i++) {
+                        arrayAuxiliar[i] = arrayInsultos[i]; // igualamos cada valor del array a devolver a la array que
+                                                             // contiene todos los insultos
+                }
+                return arrayAuxiliar;
+        }
+
+        public Insult getInsultLeChuck() {
+                // det del ultimo insulto que no compartimos en getInsults(). Reservado para
+                // Lechuck
+                return arrayInsultos[arrayInsultos.length - 1];
         }
 
 }

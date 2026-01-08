@@ -2,6 +2,7 @@ package es.cide.programacio;
 
 public class LeChuck extends Pirata {
 
+    // ***CONSTRUCOTRES***
     public LeChuck(Insult[] arrIns, int v) {
         // constructor
         super(arrIns, v);
@@ -21,6 +22,7 @@ public class LeChuck extends Pirata {
         setArrayInsults(nuevosInsultos);
     }
 
+    // ***METODOS PUBLICOS***
     @Override
     public void sayHello() {
         System.out.println("Saludo desagradable de jefe");
