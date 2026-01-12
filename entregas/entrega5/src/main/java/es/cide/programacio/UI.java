@@ -179,6 +179,13 @@ public class UI {
 
     }
 
+    public static void imprimirLeChuck() {
+        for (String trozo : Sprite.LECHUCK) {
+            // imprimimos ese trozo
+            System.out.println(trozo);
+        }
+    }
+
     // metodo para imprimir los sprites que tenemos guardados
     private static void imprimirSprite(int x) {
         String[] spriteSeleccionado;

@@ -1,6 +1,18 @@
 package es.cide.programacio;
 
 public class LeChuck extends Pirata {
+    // strings para saludo y despedida
+    String saludoLeChuck = UI.ROJO
+            + "¡MUA JA JA JA! ¿Creías que podrías escapar de mí?\n"
+            + "He cruzado los siete infiernos y he vuelto de entre los muertos solo para una cosa...\n"
+            + "¡VENGANZA! ¡Despídete de tu miserable vida, porque tu alma ahora me pertenece!"
+            + UI.RESET;
+
+    String despedidaLeChuck = UI.ROJO
+            + "¡NOOOO! ¡IMPOSIBLE! ¡Siento cómo mi ectoplasma se desvanece!\n"
+            + "¡Maldito seas! ¡No creas que has ganado! ¡Volveré!\n"
+            + "¡Siempre vuelvo! ¡Nos veremos en el infierrnooooo...!"
+            + UI.RESET;
 
     // ***CONSTRUCOTRES***
     public LeChuck(Insult[] arrIns, int v) {
@@ -25,12 +37,14 @@ public class LeChuck extends Pirata {
     // ***METODOS PUBLICOS***
     @Override
     public void sayHello() {
-        System.out.println("Saludo desagradable de jefe");
+
+        UI.escribirLento(saludoLeChuck, 15);
+
     }
 
     @Override
     public void sayGoodBye() {
-        System.out.println("Despedida desagradable de jefes");
+        UI.escribirLento(despedidaLeChuck, 15);
     }
 
 }

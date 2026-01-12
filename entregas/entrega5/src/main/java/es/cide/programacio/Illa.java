@@ -28,10 +28,12 @@ public class Illa {
     private static int vidaPiratas;
     // array que guarda los piratas que nos encontraremos durante la isla
     private Pirata[] arrayPiratas;
+
     private String nomIlla;
 
     // ***CONSTRUCTORES***
-    public Illa(Insult[] arrayInsultos) {
+    public Illa(Insult[] arrayInsultos, Heroi h) {
+        // creamos una variable
         Random random = new Random();
         // obtenemos el tamaño de la isla - 3
         mida = random.nextInt(MIDA_VARIACION);
