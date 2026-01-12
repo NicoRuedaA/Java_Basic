@@ -10,6 +10,50 @@ import java.util.Scanner;
 
 public class Main {
 
+    public static void main(String[] args) {
+
+        // metodo visual
+        UI.imprimirLeChuck();
+
+        Scanner sc = new Scanner(System.in); // abrimos el scanner
+
+        Illa illa = new Illa(InsultArray.getInsults());// creamos la isla pasandole nuestra array estatica de objetos
+                                                       // "insult"
+        boolean acabarJuego = false; // variables para interactuar durante
+                                     // el juego
+
+        // imprimimos el título
+        UI.titulo(illa);
+
+        // creamos un heroe (vacío)
+        Heroi heroi;
+
+        // eleccion del personaje
+        int eleccionPersonaje = elegirPersonaje(sc);
+        heroi = crearPersonaje(eleccionPersonaje);
+
+        // metodos visuales
+        UI.escribirLento("Nuestro héroe " + heroi.getNom() + " se encuentra con " + illa.getMaxPiratas() + " piratas",
+                40);
+        limpiarConsola(2000);
+
+        // el piarata saluda
+        illa.vullPirataActual().sayHello();
+
+        // mientras que acabarjuego sea false
+        while (!acabarJuego) {
+            // Mostramos una UI con las barras de vidas del jugador y pirata
+            mostrarUI(illa, heroi);
+            // jugamos una ronda
+            jugarRonda(illa, heroi);
+
+        }
+
+        pausarCodigo(3000);
+        // cerramos el scanner
+        sc.close();
+    }
+
     private static void limpiarConsola(int x) {
         // funcion para no repetir codigo
         UI.pausa(x);
@@ -29,6 +73,36 @@ public class Main {
             e.printStackTrace();
 
         }
+    }
+
+    private static void gameOver() {
+        // metodo visual
+        Sound finSound = new Sound();
+        finSound.reproducirEnBucle("game_over.wav");
+        UI.imprimirLeChuck();
+        UI.finDelJuego(false);
+    }
+
+    private static void victory() {
+        // metodo visual
+        Sound finSound = new Sound();
+        finSound.reproducirEnBucle("victory.wav");
+
+        UI.finDelJuego(true);
+
+    }
+
+    private static void mostrarUI(Illa illa, Heroi heroi) {
+        // metodo visual
+        UI.mostrarUI(heroi.getVida(), heroi.getVidaMax(), illa.vullPirataActual().getNom(),
+                illa.vullPirataActual().getVida(),
+                illa.vullPirataActual().getVidaMax(), heroi.getNom(), illa.getMaxPiratas());
+
+    }
+
+    private static void reproducirUnaVez(String s) {
+        Sound attackSound = new Sound();
+        attackSound.reproducirUnaVez(s);
     }
 
     private static int elegirPersonaje(Scanner sc) {
@@ -54,131 +128,73 @@ public class Main {
 
     }
 
-    private static void gameOver() {
-        // metodo visual
-        Sound finSound = new Sound();
-        finSound.reproducirEnBucle("game_over.wav");
-        UI.imprimirLeChuck();
-        UI.finDelJuego(false);
-    }
-
-    private static void victory() {
-        // metodo visual
-        Sound finSound = new Sound();
-        finSound.reproducirEnBucle("victory.wav");
-
-        UI.finDelJuego(true);
-
-    }
-
-    private static void mostrarUI(Heroi heroi, Illa illa) {
-        UI.mostrarUI(heroi.getVida(), heroi.getVidaMax(), illa.vullPirataActual().getNom(),
-                illa.vullPirataActual().getVida(),
-                illa.vullPirataActual().getVidaMax(), heroi.getNom(), illa.getMaxPiratas());
-
-    }
-
-    private static void reproducirUnaVez(String s) {
-        Sound attackSound = new Sound();
-        attackSound.reproducirUnaVez(s);
-    }
-
-    public static void main(String[] args) {
-
-        Scanner sc = new Scanner(System.in); // abrimos el scanner
-
-        Illa illa = new Illa(InsultArray.getInsults());// creamos la isla pasandole nuestra array estatica de objetos
-                                                       // "insult"
-        boolean respuestaEsCorrecta, acabarJuego = false; // variables para interactuar durante
-                                                          // el juego
-        String respuestaElegida;
-
-        // imprimimos el título
-        UI.titulo(illa);
-
-        // creamos un heroe (vacío)
-        Heroi heroi;
-
-        // eleccion del personaje
-        int eleccionPersonaje = elegirPersonaje(sc);
-
+    private static Heroi crearPersonaje(int x) {
+        Heroi h;
         // si la eleccion es 1 el hereoe será Guybrush. Sino Elaine
-        if (eleccionPersonaje == 1) {
+        if (x == 1) {
             // elegimos a guybrush
             Guybrush guybrush = new Guybrush(InsultArray.getInsults());
-            heroi = guybrush;
+            h = guybrush;
 
         } else {
             // elegimos a elaina
             Elaine elaine = new Elaine(InsultArray.getInsults());
 
-            heroi = elaine;
+            h = elaine;
         }
+
+        return h;
+    }
+
+    private static boolean jugarRonda(Illa i, Heroi h) {
+        boolean acabarJuego = false;
+        boolean respuestaEsCorrecta = false;
+        String respuestaElegida;
+        // obtenemos el string insulto del "pirata actual"
+        i.vullPirataActual().insultar();
+
+        // mostramos las posibles respuestas, elgimos una y la devolvemos
+        h.defensar();
+
+        respuestaElegida = h.elegirRespuesta(h.getArrayRespuestas());
+
+        // metodo unicamente de sonido
+        reproducirUnaVez("attack.wav");
+        pausarCodigo(100);
+
+        // comparamos el string devuelto en defensar() con la respuesta correcta del
+        // "pirata actual"
+        respuestaEsCorrecta = i.vullPirataActual().replica(respuestaElegida);
 
         // metodos visuales
-        UI.escribirLento("Nuestro héroe " + heroi.getNom() + " se encuentra con " + illa.getMaxPiratas() + " piratas",
-                40);
+        UI.animarGolpe();
         limpiarConsola(2000);
-
-        illa.vullPirataActual().sayHello();
-
-        while (!acabarJuego) {
-
-            // Mostramos una UI con las barras de vidas del jugador y pirata
-            mostrarUI(heroi, illa);
-
-            // obtenemos el string insulto del "pirata actual"
-            illa.vullPirataActual().insultar();
-
-            // mostramos las posibles respuestas, elgimos una y la devolvemos
-            heroi.defensar();
-            respuestaElegida = heroi.elegirRespuesta();
-
-            // metodo unicamente de sonido
-            reproducirUnaVez("attack.wav");
-            pausarCodigo(100);
-
-            // comparamos el string devuelto en defensar() con la respuesta correcta del
-            // "pirata actual"
-            respuestaEsCorrecta = illa.vullPirataActual().replica(respuestaElegida);
-
-            // metodos visuales
-            UI.animarGolpe();
-            limpiarConsola(2000);
-            // si la respuesta es correcta
-            if (respuestaEsCorrecta) {
-                // restamos una vida
-
-                if (!illa.vullPirataActual().vida()) {
-                    illa.vullPirataActual().sayGoodBye();
-                    // si se queda sin vidas, pasamos al siguiente pirata
-                    if (illa.nextPirata()) {
-                        // si la isla se queda sin piratas, el juego se acaba y hemos ganado
-                        acabarJuego = true;
-                        victory();
-                    }
-                }
-                // si la respuesta es incorrecta
-            } else {
-                /*
-                 * // si el heroe es Guybrush
-                 * if (heroi instanceof Guybrush)
-                 * // le quitamos una vida extra
-                 * heroi.vida();
-                 */
-                if (!heroi.vida()) {
-                    // si nos quedamos sin vida, el juego se acaba y hemos perdido
+        // si la respuesta es correcta
+        if (respuestaEsCorrecta) {
+            // restamos una vida
+            // si el heroe es Guybrush
+            if (h instanceof Guybrush)
+                // le quitamos una vida extra
+                i.vullPirataActual().vida();
+            if (!i.vullPirataActual().vida()) {
+                i.vullPirataActual().sayGoodBye();
+                // si se queda sin vidas, pasamos al siguiente pirata
+                if (i.nextPirata()) {
+                    // si la isla se queda sin piratas, el juego se acaba y hemos ganado
                     acabarJuego = true;
-                    heroi.sayGoodBye();
-                    gameOver();
+                    victory();
                 }
             }
-
+            // si la respuesta es incorrecta
+        } else {
+            if (!h.vida()) {
+                // si nos quedamos sin vida, el juego se acaba y hemos perdido
+                acabarJuego = true;
+                h.sayGoodBye();
+                gameOver();
+            }
         }
-
-        pausarCodigo(3000);
-        // cerramos el scanner
-        sc.close();
+        return acabarJuego;
     }
 
 }

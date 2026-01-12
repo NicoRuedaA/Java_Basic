@@ -9,7 +9,6 @@ import java.util.Random;
 
 //objeto tipo illa
 public class Illa {
-
     // nombres posibles para la isla
     private static final String[] nombresIsla = { "La Española", "Isla Antigua", "Icacos", "Booby Cay",
             "Waterlemon Cay" };
@@ -32,7 +31,7 @@ public class Illa {
     private String nomIlla;
 
     // ***CONSTRUCTORES***
-    public Illa(Insult[] arrayInsultos, Heroi h) {
+    public Illa(Insult[] arrayInsultos) {
         // creamos una variable
         Random random = new Random();
         // obtenemos el tamaño de la isla - 3

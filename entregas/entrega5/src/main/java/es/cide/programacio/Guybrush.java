@@ -40,31 +40,48 @@ public class Guybrush extends Heroi {
         System.out.println();
         // mostramos las respuestas
 
-        Random random = new Random();
-        int x = random.nextInt(2);
-        if (x == 1) {
-            // mostramos la primera mitad de las respuestas
-            for (int i = 0; i < arrayRespuestas.length / 2; i++) {
-                UI.escribirLento((i + 1) + " " + arrayRespuestas[i].getTextoRespuesta(), 5);
-                System.out.println();
-            }
+        // mezclamos las respuestas
+        mezclar();
+
+        // como la array está mezclada, imprimimos solo los 5 primeros, será random
+        for (int i = 0; i < 5; i++) {
+            UI.escribirLento((i + 1) + " " + arrayRespuestas[i].getTextoRespuesta(), 5);
+            System.out.println();
         }
 
-        else {
-            // mostramos la segunda mitade las respuestas
-            for (int i = arrayRespuestas.length / 2; i < arrayRespuestas.length; i++) {
-                UI.escribirLento((i + 1) + " " + arrayRespuestas[i].getTextoRespuesta(), 5);
-                System.out.println();
-            }
-        }
+        /*
+         * 
+         * Random random = new Random();
+         * int x = random.nextInt(2);
+         * if (x == 1) {
+         * // mostramos la primera mitad de las respuestas
+         * for (int i = 0; i < arrayRespuestas.length / 2; i++) {
+         * UI.escribirLento((i + 1) + " " + arrayRespuestas[i].getTextoRespuesta(), 5);
+         * System.out.println();
+         * }
+         * }
+         * 
+         * else {
+         * // mostramos la segunda mitade las respuestas
+         * for (int i = arrayRespuestas.length / 2; i < arrayRespuestas.length; i++) {
+         * UI.escribirLento((i + 1) + " " + arrayRespuestas[i].getTextoRespuesta(), 5);
+         * System.out.println();
+         * }
+         * }
+         */
 
     }
 
-    // ***METODOS CON RETURNs***
-    @Override
-    public boolean vida() {
-        this.vida -= 2;
-        return vida > 0;
+    public void mezclar() {
+        Random random = new Random();
+        // Fisher-Yates para mezclar la array
+        for (int i = arrayRespuestas.length - 1; i > 0; i--) {
+            int j = random.nextInt(i + 1);
+
+            Insult aux = arrayRespuestas[i];
+            arrayRespuestas[i] = arrayRespuestas[j];
+            arrayRespuestas[j] = aux;
+        }
     }
 
 }

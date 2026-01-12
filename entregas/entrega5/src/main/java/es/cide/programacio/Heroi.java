@@ -47,13 +47,13 @@ public class Heroi extends Personatge implements Speak, Fight {
     }
 
     // ***METODOS CON RETURN PUBLICOS***
-    public String elegirRespuesta() {
+    public String elegirRespuesta(Insult[] respuestas) {
         Scanner scHeroi = new Scanner(System.in); // no hace falta cerrarlo. Basta con cerrar Scanner al final en el
                                                   // main. Lo ideal sería pasar el scanner del main tal que defensar(sc)
 
         int respuesta = getInputValidado(scHeroi);
         // devolvemos la respuesta elegida
-        return arrayRespuestas[respuesta].getTextoRespuesta();
+        return respuestas[respuesta].getTextoRespuesta();
     }
 
     public boolean vida() {

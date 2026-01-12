@@ -10,8 +10,8 @@ public class Insult {
 
     // compuesto por un string que contiene el insulto del pirata y su respuesta
     // correcta
-    private final String textoInsulto;
-    private final String textoRespuesta;
+    private String textoInsulto;
+    private String textoRespuesta;
 
     // ***CONSTRUCTORES***
     // constructor por defecto
@@ -35,6 +35,14 @@ public class Insult {
     // get que devuelve le string de la respuesta
     public String getTextoRespuesta() {
         return this.textoRespuesta;
+    }
+
+    public void setTextoInsulto(String s) {
+        this.textoInsulto = s;
+    }
+
+    public void setTextoRespuesta(String s) {
+        this.textoRespuesta = s;
     }
 
 }
