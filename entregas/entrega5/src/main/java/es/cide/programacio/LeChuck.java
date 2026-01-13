@@ -1,6 +1,8 @@
 package es.cide.programacio;
 
 public class LeChuck extends Pirata {
+    static final int NUMERO_INSULTS = 4;
+
     // strings para saludo y despedida
     String saludoLeChuck = UI.ROJO
             + "¡MUA JA JA JA! ¿Creías que podrías escapar de mí?\n"
@@ -22,7 +24,7 @@ public class LeChuck extends Pirata {
         this.vidaMax = vida;
 
         // creamos una nueva array de tamaño 4
-        Insult[] nuevosInsultos = new Insult[4];
+        Insult[] nuevosInsultos = new Insult[NUMERO_INSULTS];
 
         // igualamos los insultos 1, 2 y 3 del array que se creó en el constructor
         for (int i = 0; i < this.arrayInsults.length; i++) {

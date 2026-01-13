@@ -41,7 +41,9 @@ public class InsultArray {
                         new Insult("¡Me das ganas de vomitar!",
                                         "Me haces pensar que alguien ya lo ha hecho."),
 
-                        new Insult("Insulto exclusivo Lechuck", "Respuesta exclusiva Lechuck")
+                        // insulto esclusivo LeChuck
+                        new Insult("¡Llevas tantos años pudriéndote que hasta los gusanos de tu barba han pedido el traslado a un cadáver con más futuro!",
+                                        "¡Qué curioso, dijeron que se mudaban a tu cerebro porque allí hay mucho más espacio libre!")
         };
 
         // lanzamos un error si instanciamos un objeto tipo "insultArray"
@@ -51,8 +53,8 @@ public class InsultArray {
 
         // get de nuestro array de insultos
         public static Insult[] getInsults() {
-                Insult[] arrayAuxiliar = new Insult[arrayInsultos.length - 1]; // nueva array del tamaño de nuestra
-                                                                               // lista -1
+                Insult[] arrayAuxiliar = new Insult[arrayInsultos.length]; // nueva array del tamaño de nuestra
+                                                                           // lista -1
                 for (int i = 0; i < arrayAuxiliar.length; i++) {
                         arrayAuxiliar[i] = arrayInsultos[i]; // igualamos cada valor del array a devolver a la array que
                                                              // contiene todos los insultos
